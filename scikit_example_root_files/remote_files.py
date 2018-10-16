@@ -46,7 +46,12 @@ class RemoteDatasetList(object):
             for filename in files.keys():
                 scoped_name = os.path.join(dataset, filename)
                 cls._all_files[scoped_name] = config
-        print("BEK", cls._all_files)
+
+    @classmethod
+    def is_known(cls, filename):
+        if not cls._all_files:
+            cls.load_remote_configs()
+        return filename in cls._all_files
 
 
 def make_all_dirs(path):
@@ -88,8 +93,15 @@ def fetch_remote_dataset(dataset_name, files, url, data_dir=None):
     return data_dir
 
 
+def is_known_remote(filename):
+    return RemoteDatasetList.is_known(filename)
+
+
 def remote_file(filename, data_dir=None, raise_missing=False):
     config = RemoteDatasetList.get_config_for_file(filename)
+    if not config and raise_missing:
+        raise RuntimeError("Unknown %s cannot be found" % filename)
+        return None
     config["data_dir"] = data_dir
     dataset_dir = fetch_remote_dataset(**config)
 
@@ -101,4 +113,4 @@ def remote_file(filename, data_dir=None, raise_missing=False):
 
 
 if __name__ == "__main__":
-    print("BEK", remote_file("cms_hep_2012_tutorial/qcd.root"))
+    print(remote_file("cms_hep_2012_tutorial/qcd.root"))
