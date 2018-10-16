@@ -1,0 +1,16 @@
+# This file should contain a dictionary of dictionaries
+# Each key in the top level is the name of the dataset
+# Each value in the top level is a dictionary giving the URL and files contained in the dataset.
+
+cms_hep_2012_tutorial:
+    url: http://ippog.org/sites/ippog.web.cern.ch/files/HEPTutorial_0.tar
+    files:
+        data.root:       HEPTutorial/files/data.root
+        dy.root:         HEPTutorial/files/dy.root
+        qcd.root:        HEPTutorial/files/qcd.root
+        single_top.root: HEPTutorial/files/single_top.root
+        ttbar.root:      HEPTutorial/files/ttbar.root
+        wjets.root:      HEPTutorial/files/wjets.root
+        ww.root:         HEPTutorial/files/ww.root
+        wz.root:         HEPTutorial/files/wz.root
+        zz.root:         HEPTutorial/files/zz.root
