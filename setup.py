@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+# Licensed under a 3-clause BSD style license, see LICENSE.
 
 from setuptools import setup, find_packages
 
@@ -23,17 +24,17 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    description="Example ROOT files for testing and demonstrating",
+    description="Example files for testing and demonstrating",
     install_requires=[],
-    license="Apache Software License 2.0",
+    license="new BSD",
     long_description=readme,
     include_package_data=True,
     keywords=['ROOT', 'HEP'],
-    name='scikit-example-root-files',
+    name='scikit-hep-testdata',
     packages=find_packages(),
     test_suite='tests',
     tests_require=['pytest', 'uproot'],
-    url='https://github.com/benkrikler/scikit-example-root-files',
+    url='https://github.com/benkrikler/scikit-hep-testdata',
     version='0.1.0',
     zip_safe=True,
 )
