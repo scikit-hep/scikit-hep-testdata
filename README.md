@@ -33,3 +33,6 @@ The following lists describe the files known by this package.
 
 ### Known remote files
 - [CMS HEP public tutorial from 2012](http://opendata.cern.ch/record/50)
+
+## Acknowledgements
+- Many of the files collected directly within this package were collated originally by Jim Pivarski for [uproot](https://github.com/scikit-hep/uproot)
