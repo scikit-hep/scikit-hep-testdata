@@ -23,12 +23,14 @@ def test_data_path_missing():
         skhtd.data_path("doesnt-exist.root", raise_missing=True)
 
 
-def test_delegate_to_remore(monkeypatch):
-    def dummy_remote_file(*args, **kwargs):
-        return "called dummy_remote_file"
+def test_delegate_to_remote(monkeypatch, tmpdir):
+    def dummy_remote_file(filename, data_dir=None, raise_missing=False):
+        if not data_dir:
+            data_dir = str(tmpdir)
+        return os.path.join(data_dir, filename)
 
     monkeypatch.setattr(skhtd.remote_files, "remote_file", dummy_remote_file)
     monkeypatch.setattr(skhtd.remote_files, "is_known_remote", lambda x: True)
 
     path = skhtd.data_path("dataset/a_remote_file.root")
-    assert path == "called dummy_remote_file"
+    assert path == str(tmpdir / "dataset" / "a_remote_file.root")

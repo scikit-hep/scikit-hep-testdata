@@ -23,3 +23,13 @@ def test_make_dirs(tmpdir):
     skhtd.remote_files.make_all_dirs(tmppath)
     # Create the directory again, which should pass unchecked
     skhtd.remote_files.make_all_dirs(tmppath)
+
+
+def test_remote_file(tmpdir, monkeypatch):
+    def fake_urlretrieve(url, writefile):
+        with open(writefile, "w") as outfile:
+            outfile.write("testing...")
+    monkeypatch.setattr(skhtd.remote_files, "urlretrieve", fake_urlretrieve)
+
+    path = skhtd.remote_files.remote_file("dataset_1/file_1.root", data_dir=str(tmpdir))
+    assert path == str(tmpdir / "dataset_1" / "file_1.root")
