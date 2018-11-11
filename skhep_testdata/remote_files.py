@@ -22,9 +22,7 @@ class RemoteDatasetList(object):
 
     @classmethod
     def get_config_for_file(cls, filename):
-        if not cls._all_files:
-            cls.load_remote_configs()
-
+        cls.load_remote_configs()
         config = cls._all_files.get(filename, None)
 
         if not config:
@@ -34,6 +32,9 @@ class RemoteDatasetList(object):
 
     @classmethod
     def load_remote_configs(cls):
+        if cls._all_files:
+            return
+
         import yaml
         with open(_remote_dataset_cfg, "r") as infile:
             datasets = yaml.load(infile)
@@ -49,8 +50,7 @@ class RemoteDatasetList(object):
 
     @classmethod
     def is_known(cls, filename):
-        if not cls._all_files:
-            cls.load_remote_configs()
+        cls.load_remote_configs()
         return filename in cls._all_files
 
 
@@ -102,7 +102,8 @@ def remote_file(filename, data_dir=None, raise_missing=False):
     if not config and raise_missing:
         raise RuntimeError("Unknown %s cannot be found" % filename)
         return None
-    config["data_dir"] = data_dir
+    if data_dir:
+        config["data_dir"] = data_dir
     dataset_dir = fetch_remote_dataset(**config)
 
     path = os.path.join(dataset_dir, filename)
@@ -110,7 +111,3 @@ def remote_file(filename, data_dir=None, raise_missing=False):
         raise RuntimeError("%s cannot be found" % filename)
 
     return path
-
-
-if __name__ == "__main__":
-    print(remote_file("cms_hep_2012_tutorial/qcd.root"))
