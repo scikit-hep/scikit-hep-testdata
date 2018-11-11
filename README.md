@@ -13,11 +13,16 @@ To install:
 pip install --user scikit-hep-testdata
 ```
 
-Once installed, absolute file paths can be resolved using the build in helper method:
-```
+Once installed, absolute file paths can be resolved using the helper methods:
+``` python
 from skhep_testdata import data_path
 
 filename = data_path("some_file.root", raise_missing=True)
+```
+
+or directly from the command-line:
+```bash
+python -m skhep_testdata cms_hep_2012_tutorial/data.root
 ```
 
 ## Adding new files
