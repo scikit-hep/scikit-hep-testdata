@@ -22,9 +22,7 @@ class RemoteDatasetList(object):
 
     @classmethod
     def get_config_for_file(cls, filename):
-        if not cls._all_files:
-            cls.load_remote_configs()
-
+        cls.load_remote_configs()
         config = cls._all_files.get(filename, None)
 
         if not config:
@@ -34,6 +32,9 @@ class RemoteDatasetList(object):
 
     @classmethod
     def load_remote_configs(cls):
+        if cls._all_files:
+            return
+
         import yaml
         with open(_remote_dataset_cfg, "r") as infile:
             datasets = yaml.load(infile)
@@ -49,8 +50,7 @@ class RemoteDatasetList(object):
 
     @classmethod
     def is_known(cls, filename):
-        if not cls._all_files:
-            cls.load_remote_configs()
+        cls.load_remote_configs()
         return filename in cls._all_files
 
 
@@ -64,16 +64,16 @@ def make_all_dirs(path):
             raise
 
 
-def fetch_remote_dataset(dataset_name, files, url, data_dir=None):
-    if not data_dir:
-        data_dir = _default_data_dir
+def fetch_remote_dataset(dataset_name, files, url, data_dir):
     dataset_dir = os.path.join(data_dir, dataset_name)
 
-    make_all_dirs(dataset_dir)
     writefile = os.path.join(dataset_dir, os.path.basename(url))
-    if not os.path.exists(writefile):
-        logging.warning("Downloading {}".format(url))
-        filename, info = urlretrieve(url, writefile)
+    if os.path.exists(writefile):
+        return
+
+    make_all_dirs(dataset_dir)
+    logging.warning("Downloading {}".format(url))
+    urlretrieve(url, writefile)
 
     if tarfile.is_tarfile(writefile):
         logging.warning("Extracting {}".format(writefile))
@@ -81,36 +81,32 @@ def fetch_remote_dataset(dataset_name, files, url, data_dir=None):
             members = [tar.getmember(f) for f in files.values()]
             tar.extractall(dataset_dir, members)
 
-    for outfile, infile in files.items():
-        full_in = os.path.join(dataset_dir, infile)
-        full_out = os.path.join(dataset_dir, outfile)
-        os.rename(full_in, full_out)
+        for outfile, infile in files.items():
+            full_in = os.path.join(dataset_dir, infile)
+            full_out = os.path.join(dataset_dir, outfile)
+            os.rename(full_in, full_out)
 
-    if not os.path.exists(dataset_dir):
+    if not os.path.exists(writefile):
         msg = "Problem obtaining remote dataset : %s"
         raise RuntimeError(msg % dataset_name)
-
-    return data_dir
 
 
 def is_known_remote(filename):
     return RemoteDatasetList.is_known(filename)
 
 
-def remote_file(filename, data_dir=None, raise_missing=False):
+def remote_file(filename, data_dir=_default_data_dir, raise_missing=False):
     config = RemoteDatasetList.get_config_for_file(filename)
     if not config and raise_missing:
         raise RuntimeError("Unknown %s cannot be found" % filename)
         return None
-    config["data_dir"] = data_dir
-    dataset_dir = fetch_remote_dataset(**config)
 
-    path = os.path.join(dataset_dir, filename)
+    path = os.path.join(data_dir, filename)
+    if not os.path.isfile(path):
+        config["data_dir"] = data_dir
+        fetch_remote_dataset(**config)
+
     if not os.path.isfile(path) and raise_missing:
         raise RuntimeError("%s cannot be found" % filename)
 
     return path
-
-
-if __name__ == "__main__":
-    print(remote_file("cms_hep_2012_tutorial/qcd.root"))

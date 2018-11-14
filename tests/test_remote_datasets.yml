@@ -1,0 +1,8 @@
+dataset_1:
+  url: http://not-a-real-url.com/dataset_1.tar
+  files: 
+    - file_1.root
+dataset_2:
+  url: http://not-a-real-url.com/dataset_1.tar
+  files: 
+    file_1.root:  file_1.root
