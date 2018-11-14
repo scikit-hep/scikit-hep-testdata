@@ -17,10 +17,20 @@ Once installed, absolute file paths can be resolved using the helper methods:
 ``` python
 from skhep_testdata import data_path
 
-filename = data_path("some_file.root", raise_missing=True)
+filename = data_path("some_file.root")
+```
+By default, if an unknown file is requested an exception is raised but this can be skipped by passing the above method `raise_missing=False`:
+```python
+filename = data_path("unknown_file.root", raise_missing=False)
 ```
 
-or directly from the command-line:
+### Remote vs. Local files
+Some files, particularly large ones, for example, are not stored within this package and instead live on a remote server; we call these "remote files".
+To obtain these use the same `data_path` method as above, however this will trigger the code to download and configure the remote file. 
+This might be slow the first time round but will subsequently be as fast as for a local file.
+
+### Command-line invocation
+You can also interact with this package from the command-line:
 ```bash
 python -m skhep_testdata cms_hep_2012_tutorial/data.root
 ```
@@ -41,3 +51,15 @@ The following lists describe the files known by this package.
 
 ## Acknowledgements
 - Many of the files collected directly within this package were collated originally by Jim Pivarski for [uproot](https://github.com/scikit-hep/uproot)
+
+## Running the tests
+This package uses `pytest` to run the unit tests.
+```bash
+pytest -vv tests/
+```
+
+Use the pytest-cov plugin to get a report on the test coverage:
+
+```bash
+pytest --cov=skhep_testdata --cov-report=html -vv tests/
+```
