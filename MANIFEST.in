@@ -1,4 +1,5 @@
 include LICENSE
 include README.md
+include shkep_testdata/remove_datasets.yml
 
 recursive-include skhep_testdata/data *
