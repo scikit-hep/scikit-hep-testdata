@@ -25,7 +25,7 @@ setup(
         'Programming Language :: Python :: 3.7',
     ],
     description="Example files for testing and demonstrating",
-    install_requires=[],
+    install_requires=['pyyaml'],
     license="BSD 3-clause",
     long_description=readme,
     include_package_data=True,
