@@ -1,0 +1,5 @@
+include LICENSE
+include README.md
+include skhep_testdata/remote_datasets.yml
+
+recursive-include skhep_testdata/data *
