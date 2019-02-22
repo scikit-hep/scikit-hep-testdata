@@ -28,6 +28,7 @@ setup(
     install_requires=['pyyaml'],
     license="BSD 3-clause",
     long_description=readme,
+    long_description_content_type="text/markdown",
     include_package_data=True,
     keywords=['ROOT', 'HEP', 'testing'],
     name='scikit-hep-testdata',
