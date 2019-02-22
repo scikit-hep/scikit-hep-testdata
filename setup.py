@@ -34,7 +34,7 @@ setup(
     packages=find_packages(exclude=["tests"]),
     test_suite='tests',
     setup_requires=['pytest-runner'],
-    tests_require=['pytest'],
+    tests_require=['pytest', 'pytest-cov', 'pytest-pep8'],
     url='https://github.com/scikit-hep/scikit-hep-testdata',
     version='0.1.0',
     zip_safe=True,
