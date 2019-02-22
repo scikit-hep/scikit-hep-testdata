@@ -1,0 +1,15 @@
+language: python
+
+matrix:
+    include:
+        - python: 2.7
+        - python: 3.6
+        
+install:
+  - env
+  - echo $TRAVIS_PYTHON_VERSION
+  - pip install --upgrade setuptools_scm
+  - pip install pytest pytest-runner
+
+script:
+  - python setup.py pytest
