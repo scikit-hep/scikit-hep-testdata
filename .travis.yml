@@ -1,15 +1,27 @@
 language: python
 
 matrix:
-    include:
-        - python: 2.7
-        - python: 3.6
+  include:
+     - python: 2.7
+     - python: 3.6
         
 install:
-  - env
-  - echo $TRAVIS_PYTHON_VERSION
-  - pip install --upgrade setuptools_scm
-  - pip install pytest pytest-runner
+    - echo $TRAVIS_PYTHON_VERSION
+    - pip install pytest pytest-runner codecov
 
 script:
-  - python setup.py pytest
+    - python setup.py pytest
+
+after_success:
+    - coverage combine
+    - codecov
+
+deploy:
+    user: ben.krikler
+    password:
+        secure: RqWm22z8MibNDEDggROCg4iAUqSp4EsetRTct5oQ+2d/DT4wbOhgb4wkKuVN7o+cCKxtWoQvosd7a4bKMvUHgYTy4mMK8t1z/1E7PxGzOXxF1xV5ddXEQAYRp9jI9v5Fy94HhzFKr2Ev318lEjU/GrwwFIuM68OHJ0j0J2PVNQwA0aGWoHUGvu5WLL/a0wTgigOaq0Xmh/JmoaSDMRV+CWSeowuMarqHwKkFJ+Upok1hDikc5vOmebEKLdncDZvGd0zpgMrST/20gvE75G3Ab4YzR9uuM7D8nLh0ahOnA5+yagNUC8QkMvX9vdTChb6y95CEEBBq/zf/P+CNvCKMJREZXm5PoNkn61/CaDmypKXWFJxNb/SnIbGuPnSBZIwf84lNzITCh4/B4D0sWyC2PpwtPic8It6RS2II/8sdjpicg1eKcOov9pVCE6AEHegltJpuKXmaogqSVyCFbN2sRgcONDE7aryDubGPLg7x6dwj9ow/H+nKoUEHDpIM1fNAlX5YQ6vvL8YkUZxsEBWppQTUFd4M235cu1LrKm8xlt1wyFJ0DuYvgdB93zdcV7tue7f8Y+iJdKo2GBnRqiwqFkKqQGgzbzgISzuGt0Simz6muWckjW1n986ztfxu8g2FW7v1kyehrnTzFXU6Xv9J+4RClCbxBPLW7Npk/0tQKcQ=
+    distributions: "sdist bdist_wheel --universal"
+    on:
+        tags: true
+        branch: master
+        condition: '$TRAVIS_PYTHON_VERSION = "3.6"'
