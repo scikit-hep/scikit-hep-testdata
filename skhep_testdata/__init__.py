@@ -3,4 +3,4 @@ from .local_files import data_path
 
 
 __all__ = ["data_path"]
-__version__ = '0.1.0'
+__version__ = '0.1.1'
