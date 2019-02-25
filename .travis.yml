@@ -4,6 +4,7 @@ matrix:
   include:
      - python: 2.7
      - python: 3.6
+     - python: 3.7
         
 install:
     - echo $TRAVIS_PYTHON_VERSION
@@ -24,4 +25,4 @@ deploy:
     on:
         tags: true
         branch: master
-        condition: '$TRAVIS_PYTHON_VERSION = "3.6"'
+        condition: '$TRAVIS_PYTHON_VERSION = "3.7"'
