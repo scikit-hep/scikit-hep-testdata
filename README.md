@@ -14,7 +14,7 @@ get larger files from common open-access data repositories.
 ## Installing and usage
 To install:
 ```bash
-pip install --user scikit-hep-testdata
+pip install scikit-hep-testdata
 ```
 
 Once installed, absolute file paths can be resolved using the helper methods:
