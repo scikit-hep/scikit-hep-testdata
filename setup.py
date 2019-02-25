@@ -37,6 +37,6 @@ setup(
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'pytest-cov', 'pytest-pep8'],
     url='https://github.com/scikit-hep/scikit-hep-testdata',
-    version='0.1.0',
+    version='0.1.1',
     zip_safe=True,
 )
