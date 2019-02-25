@@ -1,3 +1,7 @@
+[![PyPI version](https://img.shields.io/pypi/v/scikit-hep-testdata.svg?longCache=true)](https://pypi.org/project/scikit-hep-testdata/)
+[![Build Status](https://travis-ci.org/scikit-hep/scikit-hep-testdata.svg?branch=master)](https://travis-ci.org/scikit-hep/scikit-hep-testdata)
+[![codecov](https://img.shields.io/codecov/c/github/scikit-hep/scikit-hep-testdata/master.svg?longCache=true)](https://codecov.io/gh/scikit-hep/scikit-hep-testdata)
+
 scikit-hep-testdata
 ===================
 
