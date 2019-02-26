@@ -2,17 +2,23 @@
 # -*- coding: utf-8 -*-
 # Licensed under a 3-clause BSD style license, see LICENSE.
 
+import os.path
+
 from setuptools import setup, find_packages
 
 with open('README.md') as readme_file:
     readme = readme_file.read()
 
+def get_version():
+    g = {}
+    exec(open(os.path.join("skhep_testdata", "version.py")).read(), g)
+    return g["__version__"]
 
 setup(
     author="Ben Krikler",
     author_email='b.krikler@cern.ch',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
@@ -37,6 +43,6 @@ setup(
     setup_requires=['pytest-runner'],
     tests_require=['pytest', 'pytest-cov', 'pytest-pep8'],
     url='https://github.com/scikit-hep/scikit-hep-testdata',
-    version='0.1.1',
+    version = get_version(),
     zip_safe=True,
 )
