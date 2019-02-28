@@ -12,7 +12,8 @@ install:
 script:
     - python setup.py pytest
     - cd tests/dummy-package/
-    - python setup.py pytest
+    - python dummy_package/__init__.py
+      #- python setup.py pytest
 
 after_success:
     - coverage combine
