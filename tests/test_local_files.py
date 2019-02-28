@@ -14,7 +14,7 @@ def test_data_path():
 
 def test_data_path_missing():
     path = skhtd.data_path("doesnt-exist.root", raise_missing=False)
-    assert path == os.path.join(data_dir, "doesnt-exist.root")
+    assert path is None
 
     with pytest.raises(RuntimeError):
         skhtd.data_path("doesnt-exist.root")
