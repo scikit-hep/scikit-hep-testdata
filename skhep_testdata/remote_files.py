@@ -11,10 +11,8 @@ else:
     from urllib import urlretrieve
 
 
-_default_data_dir = "~/.local/share/skhep_testdata/"
-_default_data_dir = os.path.expanduser(_default_data_dir)
-_remote_dataset_cfg = os.path.realpath(os.path.dirname(__file__))
-_remote_dataset_cfg = os.path.join(_remote_dataset_cfg, "remote_datasets.yml")
+_default_data_dir = os.path.realpath(os.path.dirname(__file__))
+_remote_dataset_cfg = os.path.join(_default_data_dir, "remote_datasets.yml")
 
 
 class RemoteDatasetList(object):
