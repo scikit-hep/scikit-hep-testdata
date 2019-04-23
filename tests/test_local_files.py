@@ -32,5 +32,5 @@ def test_delegate_to_remote(monkeypatch, tmpdir):
     monkeypatch.setattr(skhtd.remote_files, "remote_file", dummy_remote_file)
     monkeypatch.setattr(skhtd.remote_files, "is_known_remote", lambda x: True)
 
-    path = skhtd.data_path("dataset/a_remote_file.root")
+    path = skhtd.data_path(os.path.join("dataset", "a_remote_file.root"))
     assert path == str(tmpdir / "dataset" / "a_remote_file.root")
