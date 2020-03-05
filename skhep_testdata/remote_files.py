@@ -3,6 +3,8 @@ import sys
 import tarfile
 import errno
 import logging
+import importlib_resources
+import yaml
 
 
 if sys.version_info[0] >= 3:
@@ -10,9 +12,7 @@ if sys.version_info[0] >= 3:
 else:
     from urllib import urlretrieve
 
-
 _default_data_dir = os.path.realpath(os.path.dirname(__file__))
-_remote_dataset_cfg = os.path.join(_default_data_dir, "remote_datasets.yml")
 
 
 class RemoteDatasetList(object):
@@ -29,13 +29,18 @@ class RemoteDatasetList(object):
         return config.copy()
 
     @classmethod
-    def load_remote_configs(cls):
-        if cls._all_files:
+    def load_remote_configs(cls, file_to_load=None):
+        if cls._all_files and file_to_load is None:
             return
 
-        import yaml
-        with open(_remote_dataset_cfg, "r") as infile:
-            datasets = yaml.load(infile)
+        if file_to_load is None:
+            dataset_yml = importlib_resources.files("skhep_testdata") / "remote_datasets.yml"
+            with dataset_yml.open() as infile:
+                datasets = yaml.load(infile, Loader=yaml.SafeLoader)
+        else:
+            with open(file_to_load, "r") as infile:
+                datasets = yaml.load(infile, Loader=yaml.SafeLoader)
+
         for dataset, config in datasets.items():
             files = config["files"]
             if isinstance(files, list):

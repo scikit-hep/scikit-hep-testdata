@@ -1,10 +1,8 @@
 import os
 import skhep_testdata as skhtd
 
-
 _remote_dataset_cfg = os.path.join(os.path.dirname(__file__), "test_remote_datasets.yml")
-skhtd.remote_files._remote_dataset_cfg = _remote_dataset_cfg
-
+skhtd.remote_files.RemoteDatasetList.load_remote_configs(_remote_dataset_cfg)
 
 good_file_1 = os.path.join("dataset_1", "file_1.root")
 bad_file_1 = os.path.join("bad_dataset_1", "file_1.root")
