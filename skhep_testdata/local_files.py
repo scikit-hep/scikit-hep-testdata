@@ -4,16 +4,27 @@ import os
 
 from . import remote_files
 
+# We are using the new files interface, which *probably* will be in Python
+# 3.9's importlib.resources. Let's be sure to use the package for now:
+import importlib_resources
 
-__top_directory__ = os.path.realpath(os.path.dirname(__file__))
-__data_directory__ = os.path.join(__top_directory__, "data")
+try:
+    from contextlib import ExitStack
+except ImportError:
+    from contextlib2 import ExitStack
 
+import atexit
 
 def data_path(filename, raise_missing=True):
     if remote_files.is_known_remote(filename):
         return remote_files.remote_file(filename, raise_missing=raise_missing)
 
-    path = os.path.join(__data_directory__, filename)
-    if not os.path.isfile(path) and raise_missing:
-        raise RuntimeError("Unknown or missing file: %s" % filename)
-    return path
+
+    ref = importlib_resources.files("skhep_testdata.data") / filename
+    file_manager = ExitStack()
+    atexit.register(file_manager.close)
+    file_path = file_manager.enter_context(importlib_resources.trees.as_file(ref))
+    if raise_missing and not file_path.exists():
+            raise RuntimeError("Unknown or missing file: {0}".format(filename))
+    return str(file_path)
+
