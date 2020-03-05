@@ -10,7 +10,7 @@ install:
     - pip install pytest pytest-runner codecov
 
 script:
-    - python setup.py pytest
+    - python -m pytest
 
 after_success:
     - coverage combine

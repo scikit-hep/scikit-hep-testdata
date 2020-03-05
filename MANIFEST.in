@@ -1,5 +1,6 @@
 include LICENSE
 include README.md
 include src/skhep_testdata/remote_datasets.yml
+include pyproject.toml
 
 recursive-include src/skhep_testdata/data *
