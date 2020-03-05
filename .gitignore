@@ -110,3 +110,4 @@ ENV/
 
 # Generated
 /src/skhep_testdata/version.py
+/pip-wheel-metadata/*
