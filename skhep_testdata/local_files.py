@@ -15,10 +15,10 @@ except ImportError:
 
 import atexit
 
+
 def data_path(filename, raise_missing=True):
     if remote_files.is_known_remote(filename):
         return remote_files.remote_file(filename, raise_missing=raise_missing)
-
 
     ref = importlib_resources.files("skhep_testdata.data") / filename
     file_manager = ExitStack()
@@ -27,4 +27,3 @@ def data_path(filename, raise_missing=True):
     if raise_missing and not file_path.exists():
             raise RuntimeError("Unknown or missing file: {0}".format(filename))
     return str(file_path)
-
