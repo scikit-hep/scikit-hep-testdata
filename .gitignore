@@ -107,3 +107,6 @@ ENV/
 
 # vim
 .*sw[op]
+
+# Generated
+/src/skhep_testdata/version.py
