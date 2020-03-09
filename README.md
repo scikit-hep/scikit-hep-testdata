@@ -1,4 +1,5 @@
 [![PyPI version](https://img.shields.io/pypi/v/scikit-hep-testdata.svg?longCache=true)](https://pypi.org/project/scikit-hep-testdata/)
+[![Github Actions badge](https://github.com/scikit-hep/scikit-hep-testdata/workflows/CI/badge.svg)](https://github.com/scikit-hep/scikit-hep-testdata/actions)
 [![Build Status](https://travis-ci.com/scikit-hep/scikit-hep-testdata.svg?branch=master)](https://travis-ci.com/scikit-hep/scikit-hep-testdata)
 [![codecov](https://img.shields.io/codecov/c/github/scikit-hep/scikit-hep-testdata/master.svg?longCache=true)](https://codecov.io/gh/scikit-hep/scikit-hep-testdata)
 
