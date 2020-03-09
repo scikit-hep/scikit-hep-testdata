@@ -4,9 +4,8 @@ on:
   pull_request:
   push:
     branches: master
-  create:
     tags:
-    - v*
+    - 'v*'
 
 jobs:
   checks:
