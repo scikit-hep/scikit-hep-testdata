@@ -87,6 +87,34 @@ void stl_containers() {
   gInterpreter->GenerateDictionary("map<string,set<string> >", "map;set;string");
   tree->Branch("map_string_set_string", &map_string_set_string, 32000, 0);
 
+  std::map<int32_t, std::vector<std::vector<int16_t> > > map_int32_vector_vector_int16;
+  gInterpreter->GenerateDictionary("map<int,vector<vector<short> > >", "map;vector");
+  tree->Branch("map_int32_vector_vector_int16", &map_int32_vector_vector_int16, 32000, 0);
+
+  std::map<int32_t, std::vector<std::set<int16_t> > > map_int32_vector_set_int16;
+  gInterpreter->GenerateDictionary("map<int,vector<set<short> > >", "map;vector;set");
+  tree->Branch("map_int32_vector_set_int16", &map_int32_vector_set_int16, 32000, 0);
+
+  std::vector<std::map<int32_t, int16_t> > vector_map_int32_int16;
+  gInterpreter->GenerateDictionary("vector<map<int,short> >", "vector;map");
+  tree->Branch("vector_map_int32_int16", &vector_map_int32_int16, 32000, 0);
+
+  std::vector<std::map<int32_t, std::string> > vector_map_int32_string;
+  gInterpreter->GenerateDictionary("vector<map<int,string> >", "vector;map;string");
+  tree->Branch("vector_map_int32_string", &vector_map_int32_string, 32000, 0);
+
+  std::vector<std::map<std::string, std::string> > vector_map_string_string;
+  gInterpreter->GenerateDictionary("vector<map<string,string> >", "vector;map;string");
+  tree->Branch("vector_map_string_string", &vector_map_string_string, 32000, 0);
+
+  std::map<std::string, std::string> map_string_string;
+  gInterpreter->GenerateDictionary("map<string,string>", "map;string");
+  tree->Branch("map_string_string", &map_string_string, 32000, 0);
+
+  std::map<std::string, const char*> map_string_charstar;
+  gInterpreter->GenerateDictionary("map<string,const char*>", "map;string");
+  tree->Branch("map_string_charstar", &map_string_charstar, 32000, 0);
+
   vector_int32.clear();
   vector_int32.push_back(1);
   vector_string.clear();
@@ -127,6 +155,20 @@ void stl_containers() {
   map_string_set_int16["one"] = std::set<int16_t>({ 1 });
   map_string_set_string.clear();
   map_string_set_string["one"] = std::set<std::string>({ "one" });
+  map_int32_vector_vector_int16.clear();
+  map_int32_vector_vector_int16[1] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 } };
+  map_int32_vector_set_int16.clear();
+  map_int32_vector_set_int16[1] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 } };
+  vector_map_int32_int16.clear();
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 } });
+  vector_map_int32_string.clear();
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" } });
+  vector_map_string_string.clear();
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" } });
+  map_string_string.clear();
+  map_string_string["one"] = "ONE";
+  map_string_charstar.clear();
+  map_string_charstar["one"] = "ONE";
 
   tree->Fill();
 
@@ -190,6 +232,27 @@ void stl_containers() {
   map_string_set_string.clear();
   map_string_set_string["one"] = std::set<std::string>({ "one" });
   map_string_set_string["two"] = std::set<std::string>({ "one", "two" });
+  map_int32_vector_vector_int16.clear();
+  map_int32_vector_vector_int16[1] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 } };
+  map_int32_vector_vector_int16[2] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 } };
+  map_int32_vector_set_int16.clear();
+  map_int32_vector_set_int16[1] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 } };
+  map_int32_vector_set_int16[2] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 } };
+  vector_map_int32_int16.clear();
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 } });
+  vector_map_int32_string.clear();
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" } });
+  vector_map_string_string.clear();
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" } });
+  map_string_string.clear();
+  map_string_string["one"] = "ONE";
+  map_string_string["two"] = "TWO";
+  map_string_charstar.clear();
+  map_string_charstar["one"] = "ONE";
+  map_string_charstar["two"] = "TWO";
 
   tree->Fill();
 
@@ -273,6 +336,34 @@ void stl_containers() {
   map_string_set_string["one"] = std::set<std::string>({ "one" });
   map_string_set_string["two"] = std::set<std::string>({ "one", "two" });
   map_string_set_string["three"] = std::set<std::string>({ "one", "two", "three" });
+  map_int32_vector_vector_int16.clear();
+  map_int32_vector_vector_int16[1] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 } };
+  map_int32_vector_vector_int16[2] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 } };
+  map_int32_vector_vector_int16[3] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 }, std::vector<int16_t>{ 1, 2, 3 } };
+  map_int32_vector_set_int16.clear();
+  map_int32_vector_set_int16[1] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 } };
+  map_int32_vector_set_int16[2] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 } };
+  map_int32_vector_set_int16[3] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 }, std::set<int16_t>{ 1, 2, 3 } };
+  vector_map_int32_int16.clear();
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 }, { 3, 3 } });
+  vector_map_int32_string.clear();
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" }, { 3, "three" } });
+  vector_map_string_string.clear();
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" }, { "three", "THREE" } });
+  map_string_string.clear();
+  map_string_string["one"] = "ONE";
+  map_string_string["two"] = "TWO";
+  map_string_string["three"] = "THREE";
+  map_string_charstar.clear();
+  map_string_charstar["one"] = "ONE";
+  map_string_charstar["two"] = "TWO";
+  map_string_charstar["three"] = "THREE";
 
   tree->Fill();
 
@@ -376,6 +467,41 @@ void stl_containers() {
   map_string_set_string["two"] = std::set<std::string>({ "one", "two" });
   map_string_set_string["three"] = std::set<std::string>({ "one", "two", "three" });
   map_string_set_string["four"] = std::set<std::string>({ "one", "two", "three", "four" });
+  map_int32_vector_vector_int16.clear();
+  map_int32_vector_vector_int16[1] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 } };
+  map_int32_vector_vector_int16[2] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 } };
+  map_int32_vector_vector_int16[3] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 }, std::vector<int16_t>{ 1, 2, 3 } };
+  map_int32_vector_vector_int16[4] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 }, std::vector<int16_t>{ 1, 2, 3 }, std::vector<int16_t>{ 1, 2, 3, 4 } };
+  map_int32_vector_set_int16.clear();
+  map_int32_vector_set_int16[1] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 } };
+  map_int32_vector_set_int16[2] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 } };
+  map_int32_vector_set_int16[3] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 }, std::set<int16_t>{ 1, 2, 3 } };
+  map_int32_vector_set_int16[4] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 }, std::set<int16_t>{ 1, 2, 3 }, std::set<int16_t>{ 1, 2, 3, 4 } };
+  vector_map_int32_int16.clear();
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 }, { 3, 3 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 } });
+  vector_map_int32_string.clear();
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" }, { 3, "three" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" }, { 3, "three" }, { 4, "four" } });
+  vector_map_string_string.clear();
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" }, { "three", "THREE" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" }, { "three", "THREE" }, { "four", "FOUR" } });
+  map_string_string.clear();
+  map_string_string["one"] = "ONE";
+  map_string_string["two"] = "TWO";
+  map_string_string["three"] = "THREE";
+  map_string_string["four"] = "FOUR";
+  map_string_charstar.clear();
+  map_string_charstar["one"] = "ONE";
+  map_string_charstar["two"] = "TWO";
+  map_string_charstar["three"] = "THREE";
+  map_string_charstar["four"] = "FOUR";
 
   tree->Fill();
 
@@ -499,6 +625,48 @@ void stl_containers() {
   map_string_set_string["three"] = std::set<std::string>({ "one", "two", "three" });
   map_string_set_string["four"] = std::set<std::string>({ "one", "two", "three", "four" });
   map_string_set_string["five"] = std::set<std::string>({ "one", "two", "three", "four", "five" });
+  map_int32_vector_vector_int16.clear();
+  map_int32_vector_vector_int16[1] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 } };
+  map_int32_vector_vector_int16[2] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 } };
+  map_int32_vector_vector_int16[3] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 }, std::vector<int16_t>{ 1, 2, 3 } };
+  map_int32_vector_vector_int16[4] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 }, std::vector<int16_t>{ 1, 2, 3 }, std::vector<int16_t>{ 1, 2, 3, 4 } };
+  map_int32_vector_vector_int16[5] = std::vector<std::vector<int16_t>>{ std::vector<int16_t>{ 1 }, std::vector<int16_t>{ 1, 2 }, std::vector<int16_t>{ 1, 2, 3 }, std::vector<int16_t>{ 1, 2, 3, 4 }, std::vector<int16_t>{ 1, 2, 3, 4, 5 } };
+  map_int32_vector_set_int16.clear();
+  map_int32_vector_set_int16[1] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 } };
+  map_int32_vector_set_int16[2] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 } };
+  map_int32_vector_set_int16[3] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 }, std::set<int16_t>{ 1, 2, 3 } };
+  map_int32_vector_set_int16[4] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 }, std::set<int16_t>{ 1, 2, 3 }, std::set<int16_t>{ 1, 2, 3, 4 } };
+  map_int32_vector_set_int16[5] = std::vector<std::set<int16_t>>{ std::set<int16_t>{ 1 }, std::set<int16_t>{ 1, 2 }, std::set<int16_t>{ 1, 2, 3 }, std::set<int16_t>{ 1, 2, 3, 4 }, std::set<int16_t>{ 1, 2, 3, 4, 5 } };
+  vector_map_int32_int16.clear();
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 }, { 3, 3 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 } });
+  vector_map_int32_int16.push_back(std::map<int32_t, int16_t>{ { 1, 1 }, { 2, 2 }, { 3, 3 }, { 4, 4 }, { 5, 5 } });
+  vector_map_int32_string.clear();
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" }, { 3, "three" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" }, { 3, "three" }, { 4, "four" } });
+  vector_map_int32_string.push_back(std::map<int32_t, std::string>{ { 1, "one" }, { 2, "two" }, { 3, "three" }, { 4, "four" }, { 5, "five" } });
+  vector_map_string_string.clear();
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" }, { "three", "THREE" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" }, { "three", "THREE" }, { "four", "FOUR" } });
+  vector_map_string_string.push_back(std::map<std::string, std::string>{ { "one", "ONE" }, { "two", "TWO" }, { "three", "THREE" }, { "four", "FOUR" }, { "five", "FIVE" } });
+  map_string_string.clear();
+  map_string_string["one"] = "ONE";
+  map_string_string["two"] = "TWO";
+  map_string_string["three"] = "THREE";
+  map_string_string["four"] = "FOUR";
+  map_string_string["five"] = "FIVE";
+  map_string_charstar.clear();
+  map_string_charstar["one"] = "ONE";
+  map_string_charstar["two"] = "TWO";
+  map_string_charstar["three"] = "THREE";
+  map_string_charstar["four"] = "FOUR";
+  map_string_charstar["five"] = "FIVE";
 
   tree->Fill();
 
