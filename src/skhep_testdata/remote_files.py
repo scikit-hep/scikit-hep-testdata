@@ -1,22 +1,27 @@
+# -*- coding: utf-8 -*-
+import errno
+import logging
 import os
 import sys
 import tarfile
-import errno
-import logging
-import importlib_resources
+
 import yaml
 
-
-if sys.version_info[0] >= 3:
-    from urllib.request import urlretrieve
-else:
+if sys.version_info < (3,):
     from urllib import urlretrieve
+else:
+    from urllib.request import urlretrieve
+
+if sys.version_info < (3, 9):
+    import importlib_resources as resources
+else:
+    from importlib import resources
 
 _default_data_dir = os.path.realpath(os.path.dirname(__file__))
 
 
 class RemoteDatasetList(object):
-    _all_files = {}
+    _all_files = {}  # type: dict[str, dict[str, str]]
 
     @classmethod
     def get_config_for_file(cls, filename):
@@ -34,7 +39,7 @@ class RemoteDatasetList(object):
             return
 
         if file_to_load is None:
-            dataset_yml = importlib_resources.files("skhep_testdata") / "remote_datasets.yml"
+            dataset_yml = resources.files("skhep_testdata") / "remote_datasets.yml"
             with dataset_yml.open() as infile:
                 datasets = yaml.load(infile, Loader=yaml.SafeLoader)
         else:

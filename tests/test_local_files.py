@@ -1,7 +1,9 @@
-import pytest
+# -*- coding: utf-8 -*-
 import os
-import skhep_testdata as skhtd
 
+import pytest
+
+import skhep_testdata as skhtd
 
 data_dir = os.path.dirname(skhtd.__file__)
 data_dir = os.path.join(data_dir, "data")

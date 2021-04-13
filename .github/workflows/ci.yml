@@ -66,4 +66,3 @@ jobs:
         user: __token__
         password: ${{ secrets.pypi_password }}
       if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
-

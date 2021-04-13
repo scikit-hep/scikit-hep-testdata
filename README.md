@@ -31,7 +31,7 @@ filename = data_path("unknown_file.root", raise_missing=False)
 
 ### Remote vs. Local files
 Some files, particularly large ones, for example, are not stored within this package and instead live on a remote server; we call these "remote files".
-To obtain these use the same `data_path` method as above, however this will trigger the code to download and configure the remote file. 
+To obtain these use the same `data_path` method as above, however this will trigger the code to download and configure the remote file.
 This might be slow the first time round but will subsequently be as fast as for a local file.
 
 ### Command-line invocation

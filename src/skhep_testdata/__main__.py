@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 This file will be invoked by python when called with th `-m` options:
 
@@ -6,9 +7,10 @@ python -m skhep_testdata cms_hep_2012_tutorial/data.root
 ```
 """
 from __future__ import print_function
-import argparse
-from . import data_path
 
+import argparse
+
+from . import data_path
 
 if __name__ == "__main__":
     description = "Expand a testing dataset path to a full path,"
