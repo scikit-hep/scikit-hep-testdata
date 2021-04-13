@@ -11,8 +11,7 @@ if sys.version_info < (3, 9):
     from importlib_resources import as_file
 else:
     from importlib import resources
-
-    from importlib_resources.trees import as_file
+    from importlib.resources import as_file
 
 if sys.version_info < (3, 3):
     from contextlib2 import ExitStack
@@ -21,6 +20,7 @@ else:
 
 
 def data_path(filename, raise_missing=True):
+    # type: (str, bool) -> str
     if remote_files.is_known_remote(filename):
         return remote_files.remote_file(filename, raise_missing=raise_missing)
 
