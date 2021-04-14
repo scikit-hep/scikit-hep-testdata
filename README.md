@@ -14,20 +14,30 @@ get larger files from common open-access data repositories.
 
 ## Installing and usage
 To install:
+
 ```bash
 pip install scikit-hep-testdata
 ```
 
 Once installed, absolute file paths can be resolved using the helper methods:
+
 ``` python
 from skhep_testdata import data_path
 
 filename = data_path("some_file.root")
 ```
+
 By default, if an unknown file is requested an exception is raised but this can be skipped by passing the above method `raise_missing=False`:
+
 ```python
 filename = data_path("unknown_file.root", raise_missing=False)
 ```
+
+The files are not stored on PyPI, so if installed from SDist/wheel, the "local"
+files will not be present, but will be downloaded from GitHub and cached in the
+`~/.local/skhepdata` directory. If you make an editable install from the Git repo,
+or if you set `SKHEP_DATA=1` when building/installing from the Git repo, you will
+have the data files locally.
 
 ### Remote vs. Local files
 Some files, particularly large ones, for example, are not stored within this package and instead live on a remote server; we call these "remote files".
@@ -36,12 +46,14 @@ This might be slow the first time round but will subsequently be as fast as for 
 
 ### Command-line invocation
 You can also interact with this package from the command-line:
+
 ```bash
 python -m skhep_testdata cms_hep_2012_tutorial/data.root
 ```
 
 ## Adding new files
 We're on the look out for new, interesting files!
+
 - *Large files*: If the file is particularly large, for example > 25 MB, it might be worth adding to an external open access data repository and adding a configuration here so that the internal helper methods can pull this down.
 - *Experiment data policies*: Please make sure you have permissions to add the file to this collection, and that any private or sensitive data has been appropriately masked, salted, or scrambled.
 
@@ -63,10 +75,4 @@ then run:
 
 ```bash
 pytest
-```
-
-The pytest-cov plugin is used to get a report on the test coverage:
-
-```bash
-pytest --cov=skhep_testdata --cov-report=html -vv tests/
 ```

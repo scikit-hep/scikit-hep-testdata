@@ -26,13 +26,22 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Install package
+      run: pip install .[test]
+
+    - name: Test regular package
+      run: pytest
+
+    - name: Uninstall package
+      run: pip uninstall -y scikit-hep-testdata
+
+    - name: Install package
       run: pip install -e .[test]
 
     - name: Install coverage
       run: pip install coveralls pytest-cov
 
-    - name: Test package
-      run: python -m pytest --cov --cov-config=setup.cfg
+    - name: Test editable package, with coverage
+      run: pytest --cov --cov-config=setup.cfg
 
     - name: Upload coverage
       if: matrix.python-version != '2.7'
@@ -69,7 +78,10 @@ jobs:
       #   run: python setup.py sdist
 
     - name: Build wheel
-      run: pipx run build --wheel
+      run: pipx run build
+
+    - name: Show sizes
+      run: ls -lh dist
 
     - uses: actions/upload-artifact@v1
       with:
