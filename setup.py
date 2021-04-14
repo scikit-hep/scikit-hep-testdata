@@ -13,9 +13,10 @@ data_ex = {".root", ".lhe"}
 
 data_files = {n for n in os.listdir(datafile) if any(n.endswith(ex) for ex in data_ex)}
 
-with open(os.path.join(datafile, "file_list.txt"), "w") as f:
-    for d in sorted(data_files):
-        print(d.split("/")[-1], file=f)
+if data_files:
+    with open(os.path.join(datafile, "file_list.txt"), "w") as f:
+        for d in sorted(data_files):
+            print(d.split("/")[-1], file=f)
 
 
 class SDist(setuptools.command.sdist.sdist):
