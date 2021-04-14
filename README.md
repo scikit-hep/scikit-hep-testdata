@@ -39,17 +39,35 @@ files will not be present, but will be downloaded from GitHub and cached in the
 or if you set `SKHEP_DATA=1` when building/installing from the Git repo, you will
 have the data files locally.
 
+You can see all "local" files with `skhep_testdata.known_files`, and you can
+download all files at once with `skhep_testdata.download_all()`, optionally selecting
+the download cache directory.
+
 ### Remote vs. Local files
-Some files, particularly large ones, for example, are not stored within this package and instead live on a remote server; we call these "remote files".
-To obtain these use the same `data_path` method as above, however this will trigger the code to download and configure the remote file.
-This might be slow the first time round but will subsequently be as fast as for a local file.
+Some files, particularly large ones, for example, are not stored within this
+package and instead live on a remote server; we call these "remote files".  To
+obtain these use the same `data_path` method as above, however this will
+trigger the code to download and configure the remote file.  This might be slow
+the first time round but will subsequently be as fast as for a local file.
+WARNING: the local file caching system has not yet been applied to remote
+files.
 
 ### Command-line invocation
 You can also interact with this package from the command-line:
 
 ```bash
+# Print a path (download if needed)
 python -m skhep_testdata cms_hep_2012_tutorial/data.root
+
+# Show all "local" files
+python -m skhep_testdata --list
+
+# Download all files to an existing directory
+python -m skhep_testdata --all --dir local
 ```
+
+You can also use `pipx run scikit-hep-testdata` to access the above CLI without installing.
+
 
 ## Adding new files
 We're on the look out for new, interesting files!

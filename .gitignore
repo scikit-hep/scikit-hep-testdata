@@ -111,3 +111,4 @@ ENV/
 # Generated
 /src/skhep_testdata/version.py
 /pip-wheel-metadata/*
+/src/skhep_testdata/data/file_list.txt
