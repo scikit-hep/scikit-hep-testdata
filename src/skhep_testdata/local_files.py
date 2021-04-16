@@ -26,8 +26,8 @@ __all__ = ("data_path", "download_all", "known_files")
 
 DIR = Path(__file__).parent.resolve()
 
-baseurl = "https://raw.githubusercontent.com/scikit-hep/scikit-hep-testdata/master/src/skhep_testdata/data/"
-zipurl = "https://github.com/scikit-hep/scikit-hep-testdata/zipball/master"
+baseurl = "https://raw.githubusercontent.com/scikit-hep/scikit-hep-testdata/main/src/skhep_testdata/data/"
+zipurl = "https://github.com/scikit-hep/scikit-hep-testdata/zipball/main"
 
 
 with resources.as_file(resources.files(data) / "file_list.txt") as fp, fp.open() as f:
@@ -65,7 +65,7 @@ def data_path(filename, raise_missing=True, cache_dir=None):
         cached_path = _cache_path(cache_dir) / filename
 
         if not cached_path.exists():
-            # Currently get from master branch
+            # Currently get from main branch
             # Could locally cache if not fixable, or always cache locally
             # Could verify exists first
             # Download all not implemented
