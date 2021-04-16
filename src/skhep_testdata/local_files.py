@@ -91,4 +91,4 @@ def download_all(cache_dir=None):
         with zipfile.ZipFile(f) as z:
             for n in z.namelist():
                 if "src/skhep_testdata/data/" in n and not n.endswith(".py"):
-                    z.extract(n, str(local_dir / n.split("/")[-1]))
+                    z.extract(n, str(local_dir / str(n.split("/")[-1])))
