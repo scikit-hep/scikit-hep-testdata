@@ -10,18 +10,17 @@ data_dir = os.path.join(data_dir, "data")
 
 
 def test_data_path():
-    path = os.path.join(data_dir, "uproot-Zmumu.root")
-    assert skhtd.data_path("uproot-Zmumu.root") == path
+    assert os.path.exists(skhtd.data_path("uproot-Zmumu.root"))
 
 
 def test_data_path_missing():
     path = skhtd.data_path("doesnt-exist.root", raise_missing=False)
     assert path == os.path.join(data_dir, "doesnt-exist.root")
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(IOError):
         skhtd.data_path("doesnt-exist.root")
 
-    with pytest.raises(RuntimeError):
+    with pytest.raises(IOError):
         skhtd.data_path("doesnt-exist.root", raise_missing=True)
 
 
