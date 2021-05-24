@@ -21,7 +21,7 @@ jobs:
     name: Check Python ${{ matrix.python-version }}
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v1
+    - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -73,10 +73,6 @@ jobs:
       with:
         python-version: 3.8
 
-      # There's no reason to produce an sdist, and it's already big
-      # - name: Build sdist
-      #   run: python setup.py sdist
-
     - name: Build wheel
       run: pipx run build
 
@@ -88,7 +84,7 @@ jobs:
         name: DistPackage
         path: dist
 
-    - uses: pypa/gh-action-pypi-publish@master
+    - uses: pypa/gh-action-pypi-publish@v1.4.2
       with:
         user: __token__
         password: ${{ secrets.pypi_password }}
