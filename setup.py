@@ -9,7 +9,7 @@ import setuptools.command.sdist
 from setuptools import setup
 
 datafile = "src/skhep_testdata/data"
-data_ex = {".root", ".lhe"}
+data_ex = {".root", ".lhe", ".gz"}
 
 data_files = {n for n in os.listdir(datafile) if any(n.endswith(ex) for ex in data_ex)}
 
