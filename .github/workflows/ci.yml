@@ -21,6 +21,8 @@ jobs:
     name: Check Python ${{ matrix.python-version }}
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
@@ -57,6 +59,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/setup-python@v2
+      with:
+        fetch-depth: 0
     - name: Install coveralls
       run: pip install coveralls
     - name: Coveralls Finished
@@ -69,11 +73,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - uses: actions/setup-python@v2
       with:
         python-version: 3.8
 
-    - name: Build wheel
+    - name: Build wheel and SDist
       run: pipx run build
 
     - name: Show sizes
