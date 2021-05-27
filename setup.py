@@ -21,7 +21,7 @@ if data_files:
 
 class SDist(setuptools.command.sdist.sdist):
     def make_release_tree(self, base_dir, files):
-        new_files = (f[len(datafile) + 1 :] for f in files if f not in data_files)
+        new_files = [f for f in files if f not in data_files]
 
         setuptools.command.sdist.sdist.make_release_tree(self, base_dir, new_files)
 
