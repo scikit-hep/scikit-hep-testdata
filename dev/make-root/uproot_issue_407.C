@@ -21,10 +21,10 @@ ClassDef(TFooPadded, 1);
 
 // Streaming interpreted classes is not supported, so this has to be ran with ACLiC:
 //
-//   root -lbq test.C+
+//   root -lbq uproot_issue_407.C+
 //
-void test() {
-  TFile f("test.root", "RECREATE");
+void uproot_issue_407() {
+  TFile f("uproot-issue-407.root", "RECREATE");
   TTree tree;
   TDatime d;
   tree.Branch("branch", &d);
