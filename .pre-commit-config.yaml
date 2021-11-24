@@ -38,15 +38,14 @@ repos:
 - repo: https://github.com/pre-commit/mirrors-mypy
   rev: v0.910-1
   hooks:
-  - id: mypy
-    files: src
-    name: mypy 2.7
-    args: [--python-version=2.7]
   # 3.9 is broken due to https://github.com/python/typeshed/pull/5216 and https://github.com/python/typeshed/pull/5214
   - id: mypy
     name: mypy 3.8
     files: src
     args: [--python-version=3.8]
+    additional_dependencies:
+    - types-PyYAML
+    - types-requests
 
 - repo: https://github.com/PyCQA/flake8
   rev: 4.0.1
