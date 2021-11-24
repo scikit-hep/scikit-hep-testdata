@@ -1,6 +1,7 @@
 [![PyPI version](https://img.shields.io/pypi/v/scikit-hep-testdata.svg?longCache=true)](https://pypi.org/project/scikit-hep-testdata/)
 [![Github Actions badge](https://github.com/scikit-hep/scikit-hep-testdata/workflows/CI/badge.svg)](https://github.com/scikit-hep/scikit-hep-testdata/actions)
 [![Coverage Status](https://coveralls.io/repos/github/scikit-hep/scikit-hep-testdata/badge.svg?branch=main)](https://coveralls.io/github/scikit-hep/scikit-hep-testdata?branch=main)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/scikit-hep/scikit-hep-testdata/main.svg)](https://results.pre-commit.ci/latest/github/scikit-hep/scikit-hep-testdata/main)
 [![Scikit-HEP][sk-badge]](https://scikit-hep.org/)
 
 [sk-badge]: https://scikit-hep.org/assets/images/Scikit--HEP-Project-blue.svg
