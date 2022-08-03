@@ -1,4 +1,8 @@
 /* https://root.cern/doc/master/ntpl001__staff_8C.html */
+/* this file tests when we have multiple pages, each page stores 65536 bytes, 
+ * thus we need to make it longer */
+/* https://github.com/scikit-hep/uproot5/pull/630 */
+
 R__LOAD_LIBRARY(ROOTNTuple)
 #include <ROOT/RField.hxx>
 #include <ROOT/RNTuple.hxx>
