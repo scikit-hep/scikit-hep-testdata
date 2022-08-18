@@ -25,8 +25,8 @@ void rntuple_stl_containers() {
   auto vector_vector_int32 = model->MakeField<std::vector<std::vector<int32_t>>>("vector_vector_int32");
   auto vector_string = model->MakeField<std::vector<std::string>>("vector_string");
   auto vector_vector_string = model->MakeField<std::vector<std::vector<std::string>>>("vector_vector_string");
-  auto variant_int32_float = model->MakeField<std::variant<int32_t, float_t>>("variant_int32_float");
-  auto vector_variant_int32_float = model->MakeField<std::vector<std::variant<int32_t, float_t>>>("vector_variant_int32_float");
+  auto variant_int32_string = model->MakeField<std::variant<int32_t, string>>("variant_int32_string");
+  auto vector_variant_int64_string = model->MakeField<std::vector<std::variant<int64_t, string>>>("vector_variant_int64_string");
   auto tuple_int32_string = model->MakeField<std::tuple<int32_t, std::string>>("tuple_int32_string");
   auto vector_tuple_int32_string = model->MakeField<std::vector<std::tuple<int32_t, std::string>>>("vector_tuple_int32_string");
 
@@ -40,8 +40,8 @@ void rntuple_stl_containers() {
   vector_string->emplace_back("one");
   vector_vector_int32->emplace_back(std::vector<int32_t>{ 1 });
   vector_vector_string->emplace_back(std::vector<std::string>{ "one" });
-  *variant_int32_float = 1.0f;
-  vector_variant_int32_float->emplace_back(1);
+  *variant_int32_string = 1;
+  vector_variant_int64_string->emplace_back("one");
   *tuple_int32_string = std::tuple<int32_t, std::string>({1, "one"});
   vector_tuple_int32_string->emplace_back(std::tuple<int32_t, std::string>({1, "one"}));
 
@@ -52,8 +52,8 @@ void rntuple_stl_containers() {
   vector_string->emplace_back("two");
   vector_vector_int32->emplace_back(std::vector<int32_t>{ 2 });
   vector_vector_string->emplace_back(std::vector<std::string>{ "two" });
-  *variant_int32_float = 2.0f;
-  vector_variant_int32_float->emplace_back(2.0f);
+  *variant_int32_string = "two";
+  vector_variant_int64_string->emplace_back(2);
   *tuple_int32_string = std::tuple<int32_t, std::string>({2, "two"});
   vector_tuple_int32_string->emplace_back(std::tuple<int32_t, std::string>({2, "two"}));
 
