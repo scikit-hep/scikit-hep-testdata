@@ -17,7 +17,7 @@ else:
 _default_data_dir = os.path.realpath(os.path.dirname(__file__))
 
 
-class RemoteDatasetList(object):
+class RemoteDatasetList:
     _all_files = {}  # type: Dict[str, Dict[str, str]]
 
     @classmethod
@@ -44,7 +44,7 @@ class RemoteDatasetList(object):
             with dataset_yml.open() as infile:
                 datasets = yaml.load(infile, Loader=yaml.SafeLoader)
         else:
-            with open(file_to_load, "r") as infile:
+            with open(file_to_load) as infile:
                 datasets = yaml.load(infile, Loader=yaml.SafeLoader)
 
         for dataset, config in datasets.items():
@@ -84,11 +84,11 @@ def fetch_remote_dataset(dataset_name, files, url, data_dir):
         return
 
     make_all_dirs(dataset_dir)
-    logging.warning("Downloading {}".format(url))
+    logging.warning(f"Downloading {url}")
     urlretrieve(url, writefile)
 
     if tarfile.is_tarfile(writefile):
-        logging.warning("Extracting {}".format(writefile))
+        logging.warning(f"Extracting {writefile}")
         with tarfile.open(writefile) as tar:
             members = [tar.getmember(f) for f in files.values()]
             tar.extractall(dataset_dir, members)
