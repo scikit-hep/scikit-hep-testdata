@@ -4,15 +4,10 @@ import logging
 import os
 import sys
 import tarfile
-import typing
-from typing import Any, Dict, Optional
+from typing import Dict, Optional
+from urllib.request import urlretrieve
 
 import yaml
-
-if sys.version_info < (3,):
-    from urllib import urlretrieve
-else:
-    from urllib.request import urlretrieve
 
 if sys.version_info < (3, 9):
     import importlib_resources as resources
@@ -90,10 +85,7 @@ def fetch_remote_dataset(dataset_name, files, url, data_dir):
 
     make_all_dirs(dataset_dir)
     logging.warning("Downloading {}".format(url))
-    if sys.version_info < (3,):
-        typing.cast(Any, urlretrieve)(url, writefile)
-    else:
-        urlretrieve(url, writefile)
+    urlretrieve(url, writefile)
 
     if tarfile.is_tarfile(writefile):
         logging.warning("Extracting {}".format(writefile))
