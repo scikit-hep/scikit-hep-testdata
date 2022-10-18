@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 This file will be invoked by python when called with th `-m` options:
 

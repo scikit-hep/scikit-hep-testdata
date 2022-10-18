@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 This example will produce a ROOT file with a TEfficiency with fBeta_bin_params filled.
 """
