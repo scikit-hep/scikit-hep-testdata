@@ -1,18 +1,12 @@
-# -*- coding: utf-8 -*-
 import errno
 import logging
 import os
 import sys
 import tarfile
-import typing
-from typing import Any, Dict, Optional
+from typing import Dict, Optional
+from urllib.request import urlretrieve
 
 import yaml
-
-if sys.version_info < (3,):
-    from urllib import urlretrieve
-else:
-    from urllib.request import urlretrieve
 
 if sys.version_info < (3, 9):
     import importlib_resources as resources
@@ -22,7 +16,7 @@ else:
 _default_data_dir = os.path.realpath(os.path.dirname(__file__))
 
 
-class RemoteDatasetList(object):
+class RemoteDatasetList:
     _all_files = {}  # type: Dict[str, Dict[str, str]]
 
     @classmethod
@@ -49,7 +43,7 @@ class RemoteDatasetList(object):
             with dataset_yml.open() as infile:
                 datasets = yaml.load(infile, Loader=yaml.SafeLoader)
         else:
-            with open(file_to_load, "r") as infile:
+            with open(file_to_load) as infile:
                 datasets = yaml.load(infile, Loader=yaml.SafeLoader)
 
         for dataset, config in datasets.items():
@@ -89,14 +83,11 @@ def fetch_remote_dataset(dataset_name, files, url, data_dir):
         return
 
     make_all_dirs(dataset_dir)
-    logging.warning("Downloading {}".format(url))
-    if sys.version_info < (3,):
-        typing.cast(Any, urlretrieve)(url, writefile)
-    else:
-        urlretrieve(url, writefile)
+    logging.warning(f"Downloading {url}")
+    urlretrieve(url, writefile)
 
     if tarfile.is_tarfile(writefile):
-        logging.warning("Extracting {}".format(writefile))
+        logging.warning(f"Extracting {writefile}")
         with tarfile.open(writefile) as tar:
             members = [tar.getmember(f) for f in files.values()]
             tar.extractall(dataset_dir, members)

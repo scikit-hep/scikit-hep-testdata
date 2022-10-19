@@ -1,20 +1,12 @@
-# -*- coding: utf-8 -*-
-from __future__ import absolute_import
-
 import sys
 import tempfile
-import typing
 import zipfile
-from typing import Any, Optional
+from pathlib import Path
+from typing import Optional
 
 import requests
 
 from . import data, remote_files
-
-if sys.version_info < (3, 5):
-    from pathlib2 import Path
-else:
-    from pathlib import Path
 
 if sys.version_info < (3, 9):
     import importlib_resources as resources
@@ -38,11 +30,7 @@ def _cache_path(cache_dir=None):
     # type: (Optional[str]) -> Path
     if cache_dir is None:
         skhepdir = Path.home() / ".local" / "skhepdata"
-        # But in typeshed - https://github.com/python/typeshed/pull/5218
-        if sys.version_info < (3, 5):
-            typing.cast(Any, skhepdir.mkdir)(exist_ok=True, parents=True)
-        else:
-            skhepdir.mkdir(exist_ok=True, parents=True)
+        skhepdir.mkdir(exist_ok=True, parents=True)
         return skhepdir
     else:
         return Path(cache_dir)
@@ -54,10 +42,7 @@ def data_path(filename, raise_missing=True, cache_dir=None):
         return remote_files.remote_file(filename, raise_missing=raise_missing)
 
     if filename not in known_files and raise_missing:
-        if sys.version_info < (3,):
-            raise IOError(filename)
-        else:
-            raise FileNotFoundError(filename)
+        raise FileNotFoundError(filename)
 
     filepath = DIR / "data" / filename
 

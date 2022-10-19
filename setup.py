@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 # Licensed under a 3-clause BSD style license, see LICENSE.
 
-from __future__ import print_function
 
 import os
 
@@ -30,7 +28,7 @@ opts = {"include_package_data": True}
 include_data = bool(os.environ.get("SKHEP_DATA"))
 if not include_data:
     opts["exclude_package_data"] = {
-        "": ["*{}".format(ex) for ex in data_ex],
+        "": [f"*{ex}" for ex in data_ex],
     }
     opts["cmdclass"] = {"sdist": SDist}
 
