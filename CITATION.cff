@@ -22,7 +22,8 @@ authors:
     affiliation: "University of Wisconsin-Madison"
   - family-names: Krikler
     given-names: Benjamin
-    affiliation: RemotelyGreen
+    orcid: "https://orcid.org/0000-0001-9712-0030"
+    website: "https://benkrikler.github.io"
   - family-names: "Ling"
     given-names: "Jerry"
     affiliation: "Harvard University"
