@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+title: scikit-hep-testdata
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+abstract: >-
+  Package providing example files for testing and developing packages against,
+  and simple helper methods to get larger files from common open-access data repositories.
+authors:
+  - family-names: "Das"
+    given-names: "Pratyush"
+    affiliation: "Purdue University"
+    orcid: "https://orcid.org/0000-0001-8140-0097"
+    email: "reikdas@gmail.com"
+  - family-names: "Eschle"
+    given-names: "Jonas"
+    affiliation: "University of Zurich"
+  - family-names: "Feickert"
+    given-names: "Matthew"
+    orcid: "https://orcid.org/0000-0003-4124-7862"
+    affiliation: "University of Wisconsin-Madison"
+  - family-names: Krikler
+    given-names: Benjamin
+    orcid: "https://orcid.org/0000-0001-9712-0030"
+    website: "https://benkrikler.github.io"
+  - family-names: "Ling"
+    given-names: "Jerry"
+    affiliation: "Harvard University"
+    orcid: "https://orcid.org/0000-0002-3359-0380"
+    email: "jling@g.harvard.edu"
+  - family-names: "Pivarski"
+    given-names: "Jim"
+    affiliation: "Princeton University"
+    orcid: "https://orcid.org/0000-0002-6649-343X"
+    email: "pivarski@princeton.edu"
+  - family-names: Rodrigues
+    given-names: Eduardo
+    affiliation: University of Liverpool
+    orcid: "https://orcid.org/0000-0003-2846-7625"
+  - family-names: Schreiner
+    given-names: Henry
+    affiliation: Princeton University
+    orcid: "https://orcid.org/0000-0002-7833-783X"
+    email: "henryfs@princeton.edu"
+  - family-names: "Stark"
+    given-names: "Giordon"
+    orcid: "https://orcid.org/0000-0001-6616-3433"
+    affiliation: "SCIPP, University of California, Santa Cruz"
+repository-code: "https://github.com/scikit-hep/scikit-hep-testdata"
+keywords:
+  - python
+  - test data
+  - scikit-hep
+license: "BSD-3-Clause"
