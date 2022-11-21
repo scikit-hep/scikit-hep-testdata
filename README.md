@@ -106,6 +106,9 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
       <td align="center"><a href="https://cs.purdue.edu/homes/das160"><img src="https://avatars.githubusercontent.com/u/11775615?v=4?s=100" width="100px;" alt="Pratyush Das"/><br /><sub><b>Pratyush Das</b></sub></a><br /><a href="#data-reikdas" title="Data">🔣</a> <a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=reikdas" title="Code">💻</a></td>
       <td align="center"><a href="http://blog.jling.dev"><img src="https://avatars.githubusercontent.com/u/5306213?v=4?s=100" width="100px;" alt="Jerry Ling"/><br /><sub><b>Jerry Ling</b></sub></a><br /><a href="#data-Moelf" title="Data">🔣</a> <a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=Moelf" title="Code">💻</a></td>
     </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/jonas-eschle"><img src="https://avatars.githubusercontent.com/u/17454848?v=4?s=100" width="100px;" alt="Jonas Eschle"/><br /><sub><b>Jonas Eschle</b></sub></a><br /><a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=jonas-eschle" title="Code">💻</a></td>
+    </tr>
   </tbody>
 </table>
 
