@@ -1,0 +1,26 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "benkrikler",
+      "name": "benkrikler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/4083697?v=4",
+      "profile": "http://benkrikler.github.io",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "scikit-hep-testdata",
+  "projectOwner": "scikit-hep"
+}
