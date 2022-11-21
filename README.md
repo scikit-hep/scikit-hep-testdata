@@ -99,6 +99,7 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
   <tbody>
     <tr>
       <td align="center"><a href="http://benkrikler.github.io"><img src="https://avatars.githubusercontent.com/u/4083697?v=4?s=100" width="100px;" alt="benkrikler"/><br /><sub><b>benkrikler</b></sub></a><br /><a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=benkrikler" title="Code">💻</a> <a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=benkrikler" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/jpivarski"><img src="https://avatars.githubusercontent.com/u/1852447?v=4?s=100" width="100px;" alt="Jim Pivarski"/><br /><sub><b>Jim Pivarski</b></sub></a><br /><a href="#maintenance-jpivarski" title="Maintenance">🚧</a> <a href="#data-jpivarski" title="Data">🔣</a> <a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=jpivarski" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
