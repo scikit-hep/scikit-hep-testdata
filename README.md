@@ -109,6 +109,7 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
     <tr>
       <td align="center"><a href="https://github.com/jonas-eschle"><img src="https://avatars.githubusercontent.com/u/17454848?v=4?s=100" width="100px;" alt="Jonas Eschle"/><br /><sub><b>Jonas Eschle</b></sub></a><br /><a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=jonas-eschle" title="Code">💻</a></td>
       <td align="center"><a href="https://giordonstark.com/"><img src="https://avatars.githubusercontent.com/u/761483?v=4?s=100" width="100px;" alt="Giordon Stark"/><br /><sub><b>Giordon Stark</b></sub></a><br /><a href="#data-kratsg" title="Data">🔣</a> <a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=kratsg" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/veprbl"><img src="https://avatars.githubusercontent.com/u/245573?v=4?s=100" width="100px;" alt="Dmitry Kalinkin"/><br /><sub><b>Dmitry Kalinkin</b></sub></a><br /><a href="#data-veprbl" title="Data">🔣</a></td>
     </tr>
   </tbody>
 </table>
