@@ -161,6 +161,15 @@
       "contributions": [
         "data"
       ]
+    },
+    {
+      "login": "8me",
+      "name": "Johannes Schumann",
+      "avatar_url": "https://avatars.githubusercontent.com/u/17862090?v=4",
+      "profile": "https://github.com/8me",
+      "contributions": [
+        "data"
+      ]
     }
   ],
   "contributorsPerLine": 7,

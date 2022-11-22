@@ -118,6 +118,7 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
     <tr>
       <td align="center"><a href="https://github.com/beojan"><img src="https://avatars.githubusercontent.com/u/3727925?v=4?s=100" width="100px;" alt="Beojan Stanislaus"/><br /><sub><b>Beojan Stanislaus</b></sub></a><br /><a href="#data-beojan" title="Data">🔣</a></td>
       <td align="center"><a href="http://www.lukasheinrich.com"><img src="https://avatars.githubusercontent.com/u/2318083?v=4?s=100" width="100px;" alt="Lukas"/><br /><sub><b>Lukas</b></sub></a><br /><a href="#data-lukasheinrich" title="Data">🔣</a></td>
+      <td align="center"><a href="https://github.com/8me"><img src="https://avatars.githubusercontent.com/u/17862090?v=4?s=100" width="100px;" alt="Johannes Schumann"/><br /><sub><b>Johannes Schumann</b></sub></a><br /><a href="#data-8me" title="Data">🔣</a></td>
     </tr>
   </tbody>
 </table>
