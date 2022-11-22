@@ -111,6 +111,7 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
       <td align="center"><a href="https://giordonstark.com/"><img src="https://avatars.githubusercontent.com/u/761483?v=4?s=100" width="100px;" alt="Giordon Stark"/><br /><sub><b>Giordon Stark</b></sub></a><br /><a href="#data-kratsg" title="Data">🔣</a> <a href="https://github.com/scikit-hep/scikit-hep-testdata/commits?author=kratsg" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/veprbl"><img src="https://avatars.githubusercontent.com/u/245573?v=4?s=100" width="100px;" alt="Dmitry Kalinkin"/><br /><sub><b>Dmitry Kalinkin</b></sub></a><br /><a href="#data-veprbl" title="Data">🔣</a></td>
       <td align="center"><a href="https://www.df.unito.it/do/docenti.pl/Show?_id=mperesan#tab-profilo"><img src="https://avatars.githubusercontent.com/u/17836610?v=4?s=100" width="100px;" alt="Michele Peresano"/><br /><sub><b>Michele Peresano</b></sub></a><br /><a href="#data-HealthyPear" title="Data">🔣</a></td>
+      <td align="center"><a href="https://github.com/lobis"><img src="https://avatars.githubusercontent.com/u/35803280?v=4?s=100" width="100px;" alt="Luis Antonio Obis Aparicio"/><br /><sub><b>Luis Antonio Obis Aparicio</b></sub></a><br /><a href="#data-lobis" title="Data">🔣</a></td>
     </tr>
   </tbody>
 </table>
