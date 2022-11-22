@@ -115,6 +115,9 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
       <td align="center"><a href="https://github.com/oshadura"><img src="https://avatars.githubusercontent.com/u/7012420?v=4?s=100" width="100px;" alt="Oksana Shadura"/><br /><sub><b>Oksana Shadura</b></sub></a><br /><a href="#data-oshadura" title="Data">🔣</a></td>
       <td align="center"><a href="https://github.com/nsmith-"><img src="https://avatars.githubusercontent.com/u/6587412?v=4?s=100" width="100px;" alt="Nicholas Smith"/><br /><sub><b>Nicholas Smith</b></sub></a><br /><a href="#data-nsmith-" title="Data">🔣</a></td>
     </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/beojan"><img src="https://avatars.githubusercontent.com/u/3727925?v=4?s=100" width="100px;" alt="Beojan Stanislaus"/><br /><sub><b>Beojan Stanislaus</b></sub></a><br /><a href="#data-beojan" title="Data">🔣</a></td>
+    </tr>
   </tbody>
 </table>
 
