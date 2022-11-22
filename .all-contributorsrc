@@ -152,6 +152,15 @@
       "contributions": [
         "data"
       ]
+    },
+    {
+      "login": "lukasheinrich",
+      "name": "Lukas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/2318083?v=4",
+      "profile": "http://www.lukasheinrich.com",
+      "contributions": [
+        "data"
+      ]
     }
   ],
   "contributorsPerLine": 7,
