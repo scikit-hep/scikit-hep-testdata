@@ -46,7 +46,7 @@ repos:
   - id: mypy
     name: mypy 3.8
     files: src
-    args: [--python-version=3.8]
+    args: [--python-version=3.8, --show-error-codes]
     additional_dependencies:
     - types-PyYAML
     - types-requests
