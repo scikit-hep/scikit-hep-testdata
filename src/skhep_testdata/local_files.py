@@ -1,8 +1,9 @@
+from __future__ import annotations
+
 import sys
 import tempfile
 import zipfile
 from pathlib import Path
-from typing import Optional
 
 import requests
 
@@ -26,7 +27,7 @@ with resources.as_file(resources.files(data) / "file_list.txt") as fp, fp.open()
     known_files = {n.strip() for n in f if n.strip()}
 
 
-def _cache_path(cache_dir: Optional[str] = None) -> Path:
+def _cache_path(cache_dir: str | None = None) -> Path:
     if cache_dir is None:
         skhepdir = Path.home() / ".local" / "skhepdata"
         skhepdir.mkdir(exist_ok=True, parents=True)
@@ -36,7 +37,7 @@ def _cache_path(cache_dir: Optional[str] = None) -> Path:
 
 
 def data_path(
-    filename: str, raise_missing: bool = True, cache_dir: Optional[str] = None
+    filename: str, raise_missing: bool = True, cache_dir: str | None = None
 ) -> str:
     if remote_files.is_known_remote(filename):
         return remote_files.remote_file(filename, raise_missing=raise_missing)
@@ -63,7 +64,7 @@ def data_path(
     return str(filepath)
 
 
-def download_all(cache_dir: Optional[str] = None) -> None:
+def download_all(cache_dir: str | None = None) -> None:
     local_dir = _cache_path(cache_dir)
 
     with tempfile.TemporaryFile() as f:
