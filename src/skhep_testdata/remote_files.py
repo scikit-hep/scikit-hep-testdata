@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 import errno
 import logging
 import os
 import sys
 import tarfile
-from typing import Dict, Optional
 from urllib.request import urlretrieve
 
 import yaml
@@ -17,11 +18,10 @@ _default_data_dir = os.path.realpath(os.path.dirname(__file__))
 
 
 class RemoteDatasetList:
-    _all_files = {}  # type: Dict[str, Dict[str, str]]
+    _all_files: dict[str, dict[str, str]] = {}
 
     @classmethod
-    def get_config_for_file(cls, filename):
-        # type: (str) -> Dict[str, str]
+    def get_config_for_file(cls, filename: str) -> dict[str, str]:
         cls.load_remote_configs()
         config = cls._all_files.get(filename, None)
 
@@ -31,8 +31,7 @@ class RemoteDatasetList:
         return config.copy()
 
     @classmethod
-    def load_remote_configs(cls, file_to_load=None):
-        # type: (Optional[str]) -> None
+    def load_remote_configs(cls, file_to_load: str | None = None) -> None:
         if cls._all_files and file_to_load is None:
             return
 
@@ -57,14 +56,12 @@ class RemoteDatasetList:
                 cls._all_files[scoped_name] = config
 
     @classmethod
-    def is_known(cls, filename):
-        # type: (str) -> bool
+    def is_known(cls, filename: str) -> bool:
         cls.load_remote_configs()
         return filename in cls._all_files
 
 
-def make_all_dirs(path):
-    # type: (str) -> None
+def make_all_dirs(path: str) -> None:
     try:
         os.makedirs(path)
     except OSError as exc:
@@ -74,8 +71,9 @@ def make_all_dirs(path):
             raise
 
 
-def fetch_remote_dataset(dataset_name, files, url, data_dir):
-    # type: (str, Dict[str, str], str, str) -> None
+def fetch_remote_dataset(
+    dataset_name: str, files: dict[str, str], url: str, data_dir: str
+) -> None:
     dataset_dir = os.path.join(data_dir, dataset_name)
 
     writefile = os.path.join(dataset_dir, os.path.basename(url))
@@ -102,13 +100,13 @@ def fetch_remote_dataset(dataset_name, files, url, data_dir):
         raise RuntimeError(msg % dataset_name)
 
 
-def is_known_remote(filename):
-    # type: (str) -> bool
+def is_known_remote(filename: str) -> bool:
     return RemoteDatasetList.is_known(filename)
 
 
-def remote_file(filename, data_dir=_default_data_dir, raise_missing=False):
-    # type: (str, str, bool) -> str
+def remote_file(
+    filename: str, data_dir: str = _default_data_dir, raise_missing: bool = False
+) -> str:
     config = RemoteDatasetList.get_config_for_file(filename)
     if not config and raise_missing:
         raise RuntimeError("Unknown %s cannot be found" % filename)
@@ -117,7 +115,7 @@ def remote_file(filename, data_dir=_default_data_dir, raise_missing=False):
     path = os.path.join(data_dir, filename)
     if not os.path.isfile(path):
         config["data_dir"] = data_dir
-        fetch_remote_dataset(**config)  # type: ignore
+        fetch_remote_dataset(**config)  # type: ignore[arg-type]
 
     if not os.path.isfile(path) and raise_missing:
         raise RuntimeError("%s cannot be found" % filename)
