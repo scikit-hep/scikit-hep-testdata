@@ -103,7 +103,7 @@ output pp-idm
 # Begin PROCESS # This is TAG. Do not modify this line
 p p > j zp , (zp > chi2 chi1 , chi2 > l+ l- chi1)           #Process
 # Be carefull the coupling are here in MG5 convention
-          
+
 end_coup           # End the couplings input
 
 done               # this tells MG there are no more procs
@@ -139,16 +139,16 @@ idm
 #   To display more options, you can type the command:               *
 #      update to_full                                                *
 #*********************************************************************
-#                                                                    
+#
 #*********************************************************************
 # Tag name for the run (one word)                                    *
 #*********************************************************************
-  tag_1     = run_tag ! name of the run 
+  tag_1     = run_tag ! name of the run
 #*********************************************************************
 # Number of events and rnd seed                                      *
 # Warning: Do not generate more than 1M events in a single run       *
 #*********************************************************************
-  10000 = nevents ! Number of unweighted events requested 
+  10000 = nevents ! Number of unweighted events requested
  21 = iseed   ! rnd seed (0=assigned automatically=default))
 #*********************************************************************
 # Collider type and energy                                           *
@@ -156,7 +156,7 @@ idm
 #             +/-3=PDF of electron/positron beam                     *
 #             +/-4=PDF of muon/antimuon beam                         *
 #*********************************************************************
-     1        = lpp1    ! beam 1 type 
+     1        = lpp1    ! beam 1 type
      1        = lpp2    ! beam 2 type
      6500.0     = ebeam1  ! beam 1 total energy in GeV
      6500.0     = ebeam2  ! beam 2 total energy in GeV
@@ -185,7 +185,7 @@ idm
  -1 = dynamical_scale_choice ! Choose one of the preselected dynamical choices
  1.0  = scalefact        ! scale factor for event-by-event scales
 
- 
+
 #*********************************************************************
 # Type and output format
 #*********************************************************************
@@ -204,7 +204,7 @@ idm
    2  = sde_strategy  ! default integration strategy (hep-ph/2021.00773)
                              ! 1 is old strategy (using amp square)
 			     ! 2 is new strategy (using only the denominator)
-# To see advanced option for Phase-Space optimization: type "update psoptim"			     
+# To see advanced option for Phase-Space optimization: type "update psoptim"
 #*********************************************************************
 # Generation bias, check the wiki page below for more information:   *
 #  'cp3.irmp.ucl.ac.be/projects/madgraph/wiki/LOEventGenerationBias' *
@@ -212,48 +212,48 @@ idm
  None = bias_module  ! Bias type of bias, [None, ptj_bias, -custom_folder-]
  {} = bias_parameters ! Specifies the parameters of the module.
 #
-#*******************************                                                 
+#*******************************
 # Parton level cuts definition *
 #*******************************
   0.0  = dsqrt_shat ! minimal shat for full process
-#                                                                    
+#
 #
 #*********************************************************************
-# BW cutoff (M+/-bwcutoff*Gamma) ! Define on/off-shell for "$" and decay  
+# BW cutoff (M+/-bwcutoff*Gamma) ! Define on/off-shell for "$" and decay
 #*********************************************************************
   15.0  = bwcutoff      ! (M+/-bwcutoff*Gamma)
  #*********************************************************************
  # Apply pt/E/eta/dr/mij/kt_durham cuts on decay products or not
  # (note that etmiss/ptll/ptheavy/ht/sorted cuts always apply)
  #*********************************************************************
-   False  = cut_decays    ! Cut decay products 
+   False  = cut_decays    ! Cut decay products
 #*********************************************************************
 # Standard Cuts                                                      *
 #*********************************************************************
 # Minimum and maximum pt's (for max, -1 means no cut)                *
 #*********************************************************************
- 20.0  = ptj       ! minimum pt for the jets 
- 10.0  = ptl       ! minimum pt for the charged leptons 
+ 20.0  = ptj       ! minimum pt for the jets
+ 10.0  = ptl       ! minimum pt for the charged leptons
  -1.0  = ptjmax    ! maximum pt for the jets
  -1.0  = ptlmax    ! maximum pt for the charged leptons
  {} = pt_min_pdg ! pt cut for other particles (use pdg code). Applied on particle and anti-particle
- {}	= pt_max_pdg ! pt cut for other particles (syntax e.g. {6: 100, 25: 50}) 
+ {}	= pt_max_pdg ! pt cut for other particles (syntax e.g. {6: 100, 25: 50})
 #
 # For display option for energy cut in the partonic center of mass frame type 'update ecut'
 #
 #*********************************************************************
 # Maximum and minimum absolute rapidity (for max, -1 means no cut)   *
 #*********************************************************************
- 5.0 = etaj    ! max rap for the jets 
- 2.5  = etal    ! max rap for the charged leptons 
+ 5.0 = etaj    ! max rap for the jets
+ 2.5  = etal    ! max rap for the charged leptons
  0.0  = etalmin ! main rap for the charged leptons
  {} = eta_min_pdg ! rap cut for other particles (use pdg code). Applied on particle and anti-particle
  {} = eta_max_pdg ! rap cut for other particles (syntax e.g. {6: 2.5, 23: 5})
 #*********************************************************************
 # Minimum and maximum DeltaR distance                                *
 #*********************************************************************
- 0.4 = drll    ! min distance between leptons 
- 0.4 = drjl    ! min distance between jet and lepton 
+ 0.4 = drll    ! min distance between leptons
+ 0.4 = drjl    ! min distance between jet and lepton
  -1.0  = drllmax ! max distance between leptons
  -1.0  = drjlmax ! max distance between jet and lepton
 #*********************************************************************
@@ -262,13 +262,13 @@ idm
  0.0   = mmll    ! min invariant mass of l+l- (same flavour) lepton pair
  -1.0  = mmllmax ! max invariant mass of l+l- (same flavour) lepton pair
  {} = mxx_min_pdg ! min invariant mass of a pair of particles X/X~ (e.g. {6:250})
- {'default': False} = mxx_only_part_antipart ! if True the invariant mass is applied only 
-                       ! to pairs of particle/antiparticle and not to pairs of the same pdg codes.  
+ {'default': False} = mxx_only_part_antipart ! if True the invariant mass is applied only
+                       ! to pairs of particle/antiparticle and not to pairs of the same pdg codes.
  #*********************************************************************
  # Minimum and maximum invariant mass for all letpons                 *
  #*********************************************************************
- 0.0   = mmnl    ! min invariant mass for all letpons (l+- and vl) 
- -1.0  = mmnlmax ! max invariant mass for all letpons (l+- and vl) 
+ 0.0   = mmnl    ! min invariant mass for all letpons (l+- and vl)
+ -1.0  = mmnlmax ! max invariant mass for all letpons (l+- and vl)
  #*********************************************************************
  # Minimum and maximum pt for 4-momenta sum of leptons / neutrino     *
  #  for pair of lepton includes only same flavor, opposite charge
@@ -279,13 +279,13 @@ idm
 # Inclusive cuts                                                     *
 #*********************************************************************
  0.0  = ptheavy   ! minimum pt for at least one heavy final state
- 0.0  = xptl ! minimum pt for at least one charged lepton 
+ 0.0  = xptl ! minimum pt for at least one charged lepton
  #*********************************************************************
  # Control the pt's of leptons sorted by pt                           *
  #*********************************************************************
  0.0   = ptl1min ! minimum pt for the leading lepton in pt
  0.0   = ptl2min ! minimum pt for the second lepton in pt
- -1.0  = ptl1max ! maximum pt for the leading lepton in pt 
+ -1.0  = ptl1max ! maximum pt for the leading lepton in pt
  -1.0  = ptl2max ! maximum pt for the second lepton in pt
 #*********************************************************************
 # maximal pdg code for quark to be considered as a light jet         *
@@ -311,24 +311,24 @@ systematics = systematics_program ! none, systematics [python], SysCalc [deprece
 ###################################
 ## INFORMATION FOR CKMBLOCK
 ###################################
-BLOCK CKMBLOCK # 
+BLOCK CKMBLOCK #
       1 4.880000e-01 # cabi
 ###################################
 ## INFORMATION FOR DM
 ###################################
-BLOCK DM # 
+BLOCK DM #
       1 1.000000e+00 # mchi
       2 1.000000e-02 # dmchi
 ###################################
 ## INFORMATION FOR GAUGEMASS
 ###################################
-BLOCK GAUGEMASS # 
+BLOCK GAUGEMASS #
       1 9.118800e+01 # mzinput
       2 8.041900e+01 # mwinput
 ###################################
 ## INFORMATION FOR HIDDEN
 ###################################
-BLOCK HIDDEN # 
+BLOCK HIDDEN #
       1 2.000000e+01 # mzdinput
       2 2.000000e+02 # mhsinput
       3 1.000000e-02 # epsilon
@@ -337,12 +337,12 @@ BLOCK HIDDEN #
 ###################################
 ## INFORMATION FOR HIGGS
 ###################################
-BLOCK HIGGS # 
+BLOCK HIGGS #
       1 1.250000e+02 # mhinput
 ###################################
 ## INFORMATION FOR MASS
 ###################################
-BLOCK MASS # 
+BLOCK MASS #
       4 1.420000e+00 # mc
       5 4.700000e+00 # mb
       6 1.743000e+02 # mt
@@ -367,7 +367,7 @@ BLOCK MASS #
 ###################################
 ## INFORMATION FOR SMINPUTS
 ###################################
-BLOCK SMINPUTS # 
+BLOCK SMINPUTS #
       1 2.250000e-01 # swsqsm
       2 1.279000e+02 # aewm1
       3 1.300000e-01 # gf (note that parameter not used if you use a pdf set)
@@ -375,7 +375,7 @@ BLOCK SMINPUTS #
 ###################################
 ## INFORMATION FOR YUKAWA
 ###################################
-BLOCK YUKAWA # 
+BLOCK YUKAWA #
       4 1.420000e+00 # ymc
       5 4.700000e+00 # ymb
       6 1.743000e+02 # ymt
