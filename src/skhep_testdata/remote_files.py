@@ -51,7 +51,7 @@ class RemoteDatasetList:
                 files = {f: f for f in files}
                 config["files"] = files
             config["dataset_name"] = dataset
-            for filename in files.keys():
+            for filename in files:
                 scoped_name = os.path.join(dataset, filename)
                 cls._all_files[scoped_name] = config
 
@@ -81,11 +81,11 @@ def fetch_remote_dataset(
         return
 
     make_all_dirs(dataset_dir)
-    logging.warning(f"Downloading {url}")
+    logging.warning("Downloading %s", url)
     urlretrieve(url, writefile)
 
     if tarfile.is_tarfile(writefile):
-        logging.warning(f"Extracting {writefile}")
+        logging.warning("Extracting %s", writefile)
         with tarfile.open(writefile) as tar:
             members = [tar.getmember(f) for f in files.values()]
             tar.extractall(dataset_dir, members)
