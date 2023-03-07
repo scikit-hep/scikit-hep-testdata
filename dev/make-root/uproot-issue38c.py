@@ -1,6 +1,8 @@
 """
 This example will produce a ROOT file with a TEfficiency with fBeta_bin_params filled.
 """
+from __future__ import annotations
+
 import ROOT
 
 fp = ROOT.TFile.Open("uproot-issue38c.root", "RECREATE")

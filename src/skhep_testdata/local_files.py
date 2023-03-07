@@ -32,8 +32,8 @@ def _cache_path(cache_dir: str | None = None) -> Path:
         skhepdir = Path.home() / ".local" / "skhepdata"
         skhepdir.mkdir(exist_ok=True, parents=True)
         return skhepdir
-    else:
-        return Path(cache_dir)
+
+    return Path(cache_dir)
 
 
 def data_path(
