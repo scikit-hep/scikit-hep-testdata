@@ -5,3 +5,5 @@ include src/skhep_testdata/py.typed
 include pyproject.toml
 
 recursive-include src/skhep_testdata/data *
+
+exclude codecov.yml
