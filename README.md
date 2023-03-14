@@ -5,7 +5,7 @@
 [![Conda latest release](https://img.shields.io/conda/vn/conda-forge/scikit-hep-testdata.svg)](https://github.com/conda-forge/scikit-hep-testdata-feedstock)
 
 [![Github Actions badge](https://github.com/scikit-hep/scikit-hep-testdata/workflows/CI/badge.svg)](https://github.com/scikit-hep/scikit-hep-testdata/actions)
-[![Code Coverage](https://codecov.io/gh/scikit-hep/scikit-hep-testdata/graph/badge.svg?branch=master)](https://codecov.io/gh/scikit-hep/scikit-hep-testdata?branch=master)
+[![Code Coverage](https://codecov.io/gh/scikit-hep/scikit-hep-testdata/graph/badge.svg?branch=main)](https://codecov.io/gh/scikit-hep/scikit-hep-testdata?branch=main)
 [![pre-commit.ci status](https://results.pre-commit.ci/badge/github/scikit-hep/scikit-hep-testdata/main.svg)](https://results.pre-commit.ci/latest/github/scikit-hep/scikit-hep-testdata/main)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
