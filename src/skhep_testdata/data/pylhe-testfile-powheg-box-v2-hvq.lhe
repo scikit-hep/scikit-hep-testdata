@@ -17,7 +17,7 @@ bornktmin 0.25     !  (default 0d0) generation cut. Minimum kt in underlying Bor
 
 ! To be set only if using LHA pdfs
 lhans1 27100 ! pdf set for hadron 1 (LHA numbering)
-lhans2 99208082 ! pdf set for hadron 2 (LHA numbering)	
+lhans2 99208082 ! pdf set for hadron 2 (LHA numbering)
 
 ! for not equal pdf set QCDLambda5
 QCDLambda5 0.22616191135470262
