@@ -121,6 +121,7 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/8me"><img src="https://avatars.githubusercontent.com/u/17862090?v=4?s=100" width="100px;" alt="Johannes Schumann"/><br /><sub><b>Johannes Schumann</b></sub></a><br /><a href="#data-8me" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ekauffma"><img src="https://avatars.githubusercontent.com/u/65742271?v=4?s=100" width="100px;" alt="Elliott Kauffman"/><br /><sub><b>Elliott Kauffman</b></sub></a><br /><a href="#data-ekauffma" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/tomeichlersmith"><img src="https://avatars.githubusercontent.com/u/31970302?v=4?s=100" width="100px;" alt="Tom Eichlersmith"/><br /><sub><b>Tom Eichlersmith</b></sub></a><br /><a href="#data-tomeichlersmith" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/APN-Pucky"><img src="https://avatars.githubusercontent.com/u/4533248?v=4?s=100" width="100px;" alt="Alexander Puck Neuwirth"/><br /><sub><b>Alexander Puck Neuwirth</b></sub></a><br /><a href="#data-APN-Pucky" title="Data">🔣</a></td>
     </tr>
   </tbody>
 </table>
