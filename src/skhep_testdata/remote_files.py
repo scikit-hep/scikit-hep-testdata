@@ -5,6 +5,7 @@ import logging
 import os
 import sys
 import tarfile
+from typing import ClassVar
 from urllib.request import urlretrieve
 
 import yaml
@@ -18,7 +19,7 @@ _default_data_dir = os.path.realpath(os.path.dirname(__file__))
 
 
 class RemoteDatasetList:
-    _all_files: dict[str, dict[str, str]] = {}
+    _all_files: ClassVar[dict[str, dict[str, str]]] = {}
 
     @classmethod
     def get_config_for_file(cls, filename: str) -> dict[str, str]:
