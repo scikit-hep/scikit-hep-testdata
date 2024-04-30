@@ -11,7 +11,7 @@ from urllib.request import urlretrieve
 import yaml
 
 if sys.version_info < (3, 9):
-    import importlib_resources as resources
+    import importlib_resources as resources  # pragma: no cover
 else:
     from importlib import resources
 
