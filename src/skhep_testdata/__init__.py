@@ -6,5 +6,5 @@ from .version import version as __version__
 __all__ = ("data_path", "download_all", "known_files", "__version__")
 
 
-def __dir__() -> tuple[str, ...]:
+def __dir__() -> tuple[str, ...]:  # pragma: no cover
     return __all__
