@@ -27,7 +27,8 @@ class RemoteDatasetList:
         config = cls._all_files.get(filename, None)
 
         if not config:
-            raise RuntimeError(f"Unknown remote file: {filename}")
+            msg = f"Unknown remote file: {filename}"
+            raise RuntimeError(msg)
 
         return config.copy()
 
@@ -110,8 +111,8 @@ def remote_file(
 ) -> str:
     config = RemoteDatasetList.get_config_for_file(filename)
     if not config and raise_missing:
-        raise RuntimeError(f"Unknown {filename} cannot be found")
-        return None
+        msg = f"Unknown {filename} cannot be found"
+        raise RuntimeError(msg)
 
     path = os.path.join(data_dir, filename)
     if not os.path.isfile(path):
@@ -119,6 +120,7 @@ def remote_file(
         fetch_remote_dataset(**config)  # type: ignore[arg-type]
 
     if not os.path.isfile(path) and raise_missing:
-        raise RuntimeError(f"{filename} cannot be found")
+        msg = f"{filename} cannot be found"
+        raise RuntimeError(msg)
 
     return path
