@@ -16,7 +16,7 @@ ClassDef(TFooMember, 1);
 class TFoo : public TObject {
 public:
   TFoo(int value_for_member, int value_for_const_member)
-    : pointer{new TFooMember(value_for_member)} 
+    : pointer{new TFooMember(value_for_member)}
     , const_pointer{new TFooMember(value_for_const_member)}
   {};
 
