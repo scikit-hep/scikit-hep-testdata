@@ -23,13 +23,13 @@ repos:
   - id: black
 
 - repo: https://github.com/asottile/setup-cfg-fmt
-  rev: v2.5.0
+  rev: v2.7.0
   hooks:
   - id: setup-cfg-fmt
     args: [--include-version-classifiers, --max-py-version=3.11]
 
 - repo: https://github.com/pre-commit/mirrors-mypy
-  rev: v1.11.2
+  rev: v1.13.0
   hooks:
   # 3.9 is broken due to https://github.com/python/typeshed/pull/5216 and https://github.com/python/typeshed/pull/5214
   - id: mypy
@@ -41,7 +41,7 @@ repos:
     - types-requests
 
 - repo: https://github.com/astral-sh/ruff-pre-commit
-  rev: "v0.6.9"
+  rev: "v0.7.2"
   hooks:
     - id: ruff
       args: ["--fix", "--show-fixes"]
