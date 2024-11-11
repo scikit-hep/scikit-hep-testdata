@@ -10,10 +10,7 @@ from urllib.request import urlretrieve
 
 import yaml
 
-if sys.version_info < (3, 9):
-    import importlib_resources as resources  # pragma: no cover
-else:
-    from importlib import resources
+from importlib import resources
 
 _default_data_dir = os.path.realpath(os.path.dirname(__file__))
 

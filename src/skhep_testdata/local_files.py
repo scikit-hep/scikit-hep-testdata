@@ -9,10 +9,7 @@ import requests
 
 from . import data, remote_files
 
-if sys.version_info < (3, 9):
-    import importlib_resources as resources  # pragma: no cover
-else:
-    from importlib import resources
+from importlib import resources
 
 __all__ = ("data_path", "download_all", "known_files")
 
