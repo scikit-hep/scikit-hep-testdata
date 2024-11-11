@@ -31,11 +31,9 @@ repos:
 - repo: https://github.com/pre-commit/mirrors-mypy
   rev: v1.11.2
   hooks:
-  # 3.9 is broken due to https://github.com/python/typeshed/pull/5216 and https://github.com/python/typeshed/pull/5214
   - id: mypy
-    name: mypy 3.8
     files: src
-    args: [--python-version=3.8, --show-error-codes]
+    args: [--show-error-codes]
     additional_dependencies:
     - types-PyYAML
     - types-requests
