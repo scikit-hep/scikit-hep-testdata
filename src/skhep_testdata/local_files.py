@@ -1,15 +1,13 @@
 from __future__ import annotations
 
-import sys
 import tempfile
 import zipfile
+from importlib import resources
 from pathlib import Path
 
 import requests
 
 from . import data, remote_files
-
-from importlib import resources
 
 __all__ = ("data_path", "download_all", "known_files")
 

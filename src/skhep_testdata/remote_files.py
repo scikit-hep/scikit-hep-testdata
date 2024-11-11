@@ -3,14 +3,12 @@ from __future__ import annotations
 import errno
 import logging
 import os
-import sys
 import tarfile
+from importlib import resources
 from typing import ClassVar
 from urllib.request import urlretrieve
 
 import yaml
-
-from importlib import resources
 
 _default_data_dir = os.path.realpath(os.path.dirname(__file__))
 
