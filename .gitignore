@@ -112,3 +112,8 @@ ENV/
 /src/skhep_testdata/version.py
 /pip-wheel-metadata/*
 /src/skhep_testdata/data/file_list.txt
+
+# Temporary files when generating ROOT files
+dev/make-root/*.root
+dev/make-root/*.so
+dev/make-root/*.d
