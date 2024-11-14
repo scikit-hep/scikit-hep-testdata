@@ -34,14 +34,14 @@ void rntuple_emptystruct_invalidvar() {
   *variant_field = 1; // valid state
   ntuple->Fill();
 
-  variant_field->emplace<StructForVariant>(2); // valid state
-  ntuple->Fill();
-
   try {
     *variant_field = StructForVariant(); // invalid state
   } catch (const std::runtime_error &e) {
     std::cerr << "Caught exception: " << e.what() << std::endl;
   }
   assert(variant_field->valueless_by_exception());
+  ntuple->Fill();
+
+  variant_field->emplace<StructForVariant>(2); // valid state
   ntuple->Fill();
 }
