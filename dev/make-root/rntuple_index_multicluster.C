@@ -16,11 +16,11 @@ using RNTupleWriteOptions = ROOT::Experimental::RNTupleWriteOptions;
 
 void rntuple_index_multicluster() {
   auto options = RNTupleWriteOptions();
-  options.SetApproxUnzippedPageSize(512);
+  options.SetMaxUnzippedPageSize(512);
   options.SetApproxZippedClusterSize(1000);
   options.SetMaxUnzippedClusterSize(1024);
 
-  std::string rootFileName{"test_ntuple_index_multicluster.root"};
+  std::string rootFileName{"test_index_multicluster_rntuple_v1.root"};
   auto model = RNTupleModel::Create();
   auto int_vector = model->MakeField<std::vector<int16_t>>("int_vector");
   auto ntuple =

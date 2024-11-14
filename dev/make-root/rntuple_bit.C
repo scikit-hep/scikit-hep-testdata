@@ -2,13 +2,14 @@ R__LOAD_LIBRARY(ROOTNTuple)
 #include <ROOT/RField.hxx>
 #include <ROOT/RNTuple.hxx>
 #include <ROOT/RNTupleModel.hxx>
+#include <ROOT/RNTupleWriter.hxx>
 #include <ROOT/RRawFile.hxx>
 
 using RNTupleModel = ROOT::Experimental::RNTupleModel;
 using RNTupleWriter = ROOT::Experimental::RNTupleWriter;
 
 void rntuple_bit() {
-  std::string rootFileName{"test_ntuple_bit.root"};
+  std::string rootFileName{"test_bit_rntuple_v1.root"};
   auto model = RNTupleModel::Create();
   auto bit_field = model->MakeField<bool>("one_bit");
   auto ntuple =
