@@ -1,18 +1,13 @@
 from __future__ import annotations
 
-import sys
 import tempfile
 import zipfile
+from importlib import resources
 from pathlib import Path
 
 import requests
 
 from . import data, remote_files
-
-if sys.version_info < (3, 9):
-    import importlib_resources as resources  # pragma: no cover
-else:
-    from importlib import resources
 
 __all__ = ("data_path", "download_all", "known_files")
 
