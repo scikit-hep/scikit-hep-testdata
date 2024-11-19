@@ -13,7 +13,7 @@ using RNTupleModel = ROOT::Experimental::RNTupleModel;
 using RNTupleWriter = ROOT::Experimental::RNTupleWriter;
 
 void rntuple_atomic_bitset() {
-  std::string rootFileName{"test_ntuple_atomic_bitset.root"};
+  std::string rootFileName{"test_atomic_bitset_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto atomic_int_field = model->MakeField<std::atomic<int>>("atomic_int");
   auto bitset_field = model->MakeField<std::bitset<42>>("bitset");
