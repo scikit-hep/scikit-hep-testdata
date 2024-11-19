@@ -12,7 +12,7 @@ using RNTupleModel = ROOT::Experimental::RNTupleModel;
 using RNTupleWriter = ROOT::Experimental::RNTupleWriter;
 
 void rntuple_split_3e4() {
-    std::string rootFileName{"test_split_3e4_rntuple_v1.root"};
+    std::string rootFileName{"test_split_3e4_rntuple_v1-0-0-0.root"};
     auto model = RNTupleModel::Create();
     auto splitint_field = model->MakeField<int32_t>("one_int32");
     auto splitint_field2 = model->MakeField<uint32_t>("two_uint32");

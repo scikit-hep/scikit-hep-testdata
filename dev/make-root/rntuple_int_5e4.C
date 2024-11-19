@@ -14,7 +14,7 @@ using RNTupleModel = ROOT::Experimental::RNTupleModel;
 using RNTupleWriter = ROOT::Experimental::RNTupleWriter;
 
 void rntuple_int_5e4() {
-  std::string rootFileName{"test_int_5e4_rntuple_v1.root"};
+  std::string rootFileName{"test_int_5e4_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto int_field = model->MakeField<int>("one_integers");
   auto ntuple =

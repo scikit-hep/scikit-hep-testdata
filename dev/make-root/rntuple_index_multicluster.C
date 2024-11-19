@@ -20,7 +20,7 @@ void rntuple_index_multicluster() {
   options.SetApproxZippedClusterSize(1000);
   options.SetMaxUnzippedClusterSize(1024);
 
-  std::string rootFileName{"test_index_multicluster_rntuple_v1.root"};
+  std::string rootFileName{"test_index_multicluster_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto int_vector = model->MakeField<std::vector<int16_t>>("int_vector");
   auto ntuple =

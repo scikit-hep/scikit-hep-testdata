@@ -28,7 +28,7 @@ struct TopStruct {
 };
 
 void rntuple_nested_structs() {
-  std::string rootFileName{"test_nested_structs_rntuple_v1.root"};
+  std::string rootFileName{"test_nested_structs_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto struct_field = model->MakeField<TopStruct>("my_struct");
   auto ntuple =

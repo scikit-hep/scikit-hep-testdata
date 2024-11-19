@@ -18,7 +18,7 @@ struct LV{
 };
 
 void rntuple_int_vfloat_tlv_vtlv() {
-  std::string rootFileName{"test_int_vfloat_tlv_vtlv_rntuple_v1.root"};
+  std::string rootFileName{"test_int_vfloat_tlv_vtlv_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto int_field = model->MakeField<int>("one_integers");
   auto v_float_field = model->MakeField<std::vector<float>>("two_v_floats");

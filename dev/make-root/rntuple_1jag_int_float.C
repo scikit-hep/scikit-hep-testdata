@@ -10,7 +10,7 @@ using RNTupleModel = ROOT::Experimental::RNTupleModel;
 using RNTupleWriter = ROOT::Experimental::RNTupleWriter;
 
 void rntuple_1jag_int_float() {
-  std::string rootFileName{"test_1jag_int_float_rntuple_v1.root"};
+  std::string rootFileName{"test_1jag_int_float_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto v_int = model->MakeField<std::vector<int>>("one_v_integers");
   auto v_float = model->MakeField<std::vector<float>>("two_v_floats");

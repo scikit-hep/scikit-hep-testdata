@@ -26,7 +26,7 @@ struct LV{
 };
 
 void rntuple_stl_containers() {
-  std::string rootFileName{"test_stl_containers_rntuple_v1.root"};
+  std::string rootFileName{"test_stl_containers_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto string = model->MakeField<std::string>("string");
   auto vector_int32 = model->MakeField<std::vector<int32_t>>("vector_int32");

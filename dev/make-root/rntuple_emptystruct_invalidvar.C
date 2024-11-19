@@ -23,7 +23,7 @@ struct StructForVariant {
 };
 
 void rntuple_emptystruct_invalidvar() {
-  std::string rootFileName{"test_emptystruct_invalidvar_rntuple_v1.root"};
+  std::string rootFileName{"test_emptystruct_invalidvar_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto empty_struct_field = model->MakeField<EmptyStruct>("empty_struct");
   auto variant_field = model->MakeField<std::variant<int,StructForVariant>>("variant");

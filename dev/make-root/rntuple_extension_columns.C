@@ -20,7 +20,7 @@ void rntuple_extension_columns() {
   options.SetApproxZippedClusterSize(2000);
   options.SetMaxUnzippedClusterSize(2000);
 
-  std::string rootFileName{"test_extension_columns_rntuple_v1.root"};
+  std::string rootFileName{"test_extension_columns_rntuple_v1-0-0-0.root"};
   auto model = RNTupleModel::Create();
   auto int_field = model->MakeField<int>("int_field");
 
