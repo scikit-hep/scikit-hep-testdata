@@ -1,8 +1,7 @@
 /* https://root.cern/doc/master/ntpl001__staff_8C.html */
 R__LOAD_LIBRARY(ROOTNTuple)
-#include <ROOT/RField.hxx>
 #include <ROOT/RNTuple.hxx>
-#include <ROOT/RField.hxx>
+#include <ROOT/RFieldBase.hxx>
 #include <ROOT/RNTupleModel.hxx>
 #include <ROOT/RNTupleWriter.hxx>
 #include <ROOT/RNTupleUtil.hxx>

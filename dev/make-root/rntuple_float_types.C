@@ -2,7 +2,6 @@
 R__LOAD_LIBRARY(ROOTNTuple)
 #include <ROOT/RField.hxx>
 #include <ROOT/RNTuple.hxx>
-#include <ROOT/RField.hxx>
 #include <ROOT/RNTupleModel.hxx>
 #include <ROOT/RNTupleWriter.hxx>
 #include <ROOT/RNTupleUtil.hxx>
