@@ -21,8 +21,11 @@ void rntuple_multiple_cluster_groups() {
   auto ntuple =
       RNTupleWriter::Recreate(std::move(model), "ntuple", rootFileName);
   for(auto i=0; i<1000; i++){
-      if (i && i%100==0){
-          ntuple->CommitCluster(/*commitClusterGroup*/ i%300==0);
+      if (i && i%100==0) {
+          ntuple->CommitCluster();
+      }
+      if (i == 450 || i == 750) { // to add a bit of unevenness
+        ntuple->CommitCluster(/*commitClusterGroup*/ true);
       }
       *int_field = i;
       *int_vector = {static_cast<int16_t>(i), static_cast<int16_t>(i+1)};
