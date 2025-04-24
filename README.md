@@ -124,6 +124,9 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/APN-Pucky"><img src="https://avatars.githubusercontent.com/u/4533248?v=4?s=100" width="100px;" alt="Alexander Puck Neuwirth"/><br /><sub><b>Alexander Puck Neuwirth</b></sub></a><br /><a href="#data-APN-Pucky" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ioanaif"><img src="https://avatars.githubusercontent.com/u/9751871?v=4?s=100" width="100px;" alt="ioanaif"/><br /><sub><b>ioanaif</b></sub></a><br /><a href="#data-ioanaif" title="Data">🔣</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ArturU043"><img src="https://avatars.githubusercontent.com/u/52539410?v=4?s=100" width="100px;" alt="Artur Cordeiro Oudot Choi"/><br /><sub><b>Artur Cordeiro Oudot Choi</b></sub></a><br /><a href="#data-ArturU043" title="Data">🔣</a></td>
+    </tr>
   </tbody>
 </table>
 
