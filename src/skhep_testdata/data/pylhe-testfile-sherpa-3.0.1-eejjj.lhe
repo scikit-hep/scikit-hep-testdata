@@ -1,10 +1,10 @@
 <LesHouchesEvents version="1.0">
 <header>
-<!-- 
+<!--
 # created by SHERPA 3.0.1
 # Run data extracted from : Sherpa.yaml
---> 
-<SHRunCard> 
+-->
+<SHRunCard>
 BEAMS: [11, -11]
 BEAM_ENERGIES: 22.0
 
@@ -19,7 +19,7 @@ PROCESSES:
 
 EVENT_OUTPUT:
   - LHEF[sherpa.lhe]
-</SHRunCard> 
+</SHRunCard>
 </header>
 <init>
     11    -11          22          22   0   0     -1     -1    3    1
