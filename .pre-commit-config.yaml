@@ -13,9 +13,12 @@ repos:
   - id: check-yaml
   - id: debug-statements
   - id: end-of-file-fixer
+    exclude:  ^src/skhep_testdata/data/.*\.lhe(\.gz)?$
   - id: mixed-line-ending
+    exclude:  ^src/skhep_testdata/data/.*\.lhe(\.gz)?$
   - id: requirements-txt-fixer
   - id: trailing-whitespace
+    exclude:  ^src/skhep_testdata/data/.*\.lhe(\.gz)?$
 
 - repo: https://github.com/psf/black-pre-commit-mirror
   rev: 25.1.0
