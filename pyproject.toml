@@ -39,7 +39,7 @@ lint.extend-ignore = [
   "E501",   # Line too long
   "PT011",  # Too broad of a match
 ]
-target-version = "py39"
+target-version = "py310"
 lint.typing-modules = ["mypackage._compat.typing"]
 src = ["src"]
 lint.unfixable = [
