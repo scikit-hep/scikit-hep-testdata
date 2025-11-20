@@ -9,7 +9,7 @@ from urllib.request import urlretrieve
 
 import yaml
 
-_default_data_dir = Path(__file__).resolve().parent
+from . import data
 
 
 class RemoteDatasetList:
@@ -60,9 +60,9 @@ def make_all_dirs(path: str) -> None:
 
 
 def fetch_remote_dataset(
-    dataset_name: str, files: dict[str, str], url: str, data_dir: str
+    dataset_name: str, files: dict[str, str], url: str, cache_dir: str
 ) -> None:
-    dataset_dir = Path(data_dir) / dataset_name
+    dataset_dir = Path(cache_dir) / dataset_name
 
     writefile = dataset_dir / Path(url).name
     if writefile.exists():
@@ -72,9 +72,9 @@ def fetch_remote_dataset(
     logging.warning("Downloading %s", url)
     urlretrieve(url, str(writefile))
 
-    if tarfile.is_tarfile(writefile):
+    if tarfile.is_tarfile(str(writefile)):
         logging.warning("Extracting %s", writefile)
-        with tarfile.open(writefile) as tar:
+        with tarfile.open(str(writefile)) as tar:
             members = [tar.getmember(f) for f in files.values()]
             tar.extractall(str(dataset_dir), members)
 
@@ -93,16 +93,17 @@ def is_known_remote(filename: str) -> bool:
 
 
 def remote_file(
-    filename: str, data_dir: str | Path = _default_data_dir, raise_missing: bool = False
+    filename: str, cache_dir: str | Path | None = None, raise_missing: bool = False
 ) -> str:
+    cache_dir = data.cache_path(cache_dir)
     config = RemoteDatasetList.get_config_for_file(filename)
     if not config and raise_missing:
         msg = f"Unknown {filename} cannot be found"
         raise RuntimeError(msg)
 
-    path = Path(data_dir) / filename
+    path = Path(cache_dir) / filename
     if not path.is_file():
-        config["data_dir"] = str(data_dir)
+        config["cache_dir"] = str(cache_dir)
         fetch_remote_dataset(**config)  # type: ignore[arg-type]
 
     if not path.is_file() and raise_missing:

@@ -22,20 +22,13 @@ with resources.as_file(resources.files(data) / "file_list.txt") as fp, fp.open()
     known_files = {n.strip() for n in f if n.strip()}
 
 
-def _cache_path(cache_dir: str | None = None) -> Path:
-    if cache_dir is None:
-        skhepdir = Path.home() / ".local" / "skhepdata"
-        skhepdir.mkdir(exist_ok=True, parents=True)
-        return skhepdir
-
-    return Path(cache_dir)
-
-
 def data_path(
     filename: str, raise_missing: bool = True, cache_dir: str | None = None
 ) -> str:
     if remote_files.is_known_remote(filename):
-        return remote_files.remote_file(filename, raise_missing=raise_missing)
+        return remote_files.remote_file(
+            filename, cache_dir=cache_dir, raise_missing=raise_missing
+        )
 
     if filename not in known_files and raise_missing:
         raise FileNotFoundError(filename)
@@ -43,7 +36,7 @@ def data_path(
     filepath = DIR / "data" / filename
 
     if not filepath.exists() and filename in known_files:
-        cached_path = _cache_path(cache_dir) / filename
+        cached_path = data.cache_path(cache_dir) / filename
 
         if not cached_path.exists():
             # Currently get from main branch
@@ -60,7 +53,7 @@ def data_path(
 
 
 def download_all(cache_dir: str | None = None) -> None:
-    local_dir = _cache_path(cache_dir)
+    local_dir = data.cache_path(cache_dir)
 
     with tempfile.TemporaryFile() as f:
         with requests.get(zipurl, stream=True) as r:
