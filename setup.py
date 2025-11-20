@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 
 import setuptools.command.sdist
 from setuptools import setup
@@ -12,7 +13,7 @@ data_ex = {".root", ".lhe", ".gz", ".json"}
 data_files = {n for n in os.listdir(datafile) if any(n.endswith(ex) for ex in data_ex)}
 
 if data_files:
-    with open(os.path.join(datafile, "file_list.txt"), "w") as f:
+    with open(Path(datafile) / "file_list.txt", "w") as f:
         for d in sorted(data_files):
             print(d.split("/")[-1], file=f)
 
