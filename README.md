@@ -62,14 +62,16 @@ You can also interact with this package from the command-line:
 
 ```bash
 # Print a path (download if needed)
-python -m skhep_testdata cms_hep_2012_tutorial/data.root
+skhep-testdata cms_hep_2012_tutorial/data.root
 
 # Show all "local" files
-python -m skhep_testdata --list
+skhep-testdata --list
 
 # Download all files to an existing directory
-python -m skhep_testdata --all --dir local
+skhep-testdata --all --dir local
 ```
+
+Note: The `scikit-hep-testdata` and `skhep-testdata` command-line tools are the equivalent of `python -m skhep_testdata`.
 
 You can also use `pipx run scikit-hep-testdata` to access the above CLI without installing.
 
