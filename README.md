@@ -73,7 +73,25 @@ skhep-testdata --all --dir local
 
 Note: The `scikit-hep-testdata` and `skhep-testdata` command-line tools are the equivalent of `python -m skhep_testdata`.
 
-You can also use `pipx run scikit-hep-testdata` to access the above CLI without installing.
+You can also use any of the following to access the above CLI without installing.
+
+* uv:
+
+```
+uvx scikit-hep-testdata
+```
+
+* pipx:
+
+```
+pipx run scikit-hep-testdata
+```
+
+* Pixi:
+
+```
+pixi exec scikit-hep-testdata
+```
 
 
 ## Adding new files
