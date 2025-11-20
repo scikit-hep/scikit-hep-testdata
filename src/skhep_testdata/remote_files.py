@@ -1,16 +1,15 @@
 from __future__ import annotations
 
-import errno
 import logging
-import os
 import tarfile
 from importlib import resources
+from pathlib import Path
 from typing import ClassVar
 from urllib.request import urlretrieve
 
 import yaml
 
-_default_data_dir = os.path.realpath(os.path.dirname(__file__))
+_default_data_dir = Path(__file__).resolve().parent
 
 
 class RemoteDatasetList:
@@ -33,9 +32,7 @@ class RemoteDatasetList:
             return
 
         if file_to_load is None:
-            dataset_yml = resources.files("skhep_testdata").joinpath(
-                "remote_datasets.yml"
-            )
+            dataset_yml = resources.files("skhep_testdata") / "remote_datasets.yml"
             with dataset_yml.open() as infile:
                 datasets = yaml.load(infile, Loader=yaml.SafeLoader)
         else:
@@ -49,7 +46,7 @@ class RemoteDatasetList:
                 config["files"] = files
             config["dataset_name"] = dataset
             for filename in files:
-                scoped_name = os.path.join(dataset, filename)
+                scoped_name = str(Path(dataset) / filename)
                 cls._all_files[scoped_name] = config
 
     @classmethod
@@ -59,40 +56,34 @@ class RemoteDatasetList:
 
 
 def make_all_dirs(path: str) -> None:
-    try:
-        os.makedirs(path)
-    except OSError as exc:
-        if exc.errno == errno.EEXIST and os.path.isdir(path):
-            pass
-        else:
-            raise
+    Path(path).mkdir(parents=True, exist_ok=True)
 
 
 def fetch_remote_dataset(
     dataset_name: str, files: dict[str, str], url: str, data_dir: str
 ) -> None:
-    dataset_dir = os.path.join(data_dir, dataset_name)
+    dataset_dir = Path(data_dir) / dataset_name
 
-    writefile = os.path.join(dataset_dir, os.path.basename(url))
-    if os.path.exists(writefile):
+    writefile = dataset_dir / Path(url).name
+    if writefile.exists():
         return
 
-    make_all_dirs(dataset_dir)
+    make_all_dirs(str(dataset_dir))
     logging.warning("Downloading %s", url)
-    urlretrieve(url, writefile)
+    urlretrieve(url, str(writefile))
 
     if tarfile.is_tarfile(writefile):
         logging.warning("Extracting %s", writefile)
         with tarfile.open(writefile) as tar:
             members = [tar.getmember(f) for f in files.values()]
-            tar.extractall(dataset_dir, members)
+            tar.extractall(str(dataset_dir), members)
 
         for outfile, infile in files.items():
-            full_in = os.path.join(dataset_dir, infile)
-            full_out = os.path.join(dataset_dir, outfile)
-            os.rename(full_in, full_out)
+            full_in = dataset_dir / infile
+            full_out = dataset_dir / outfile
+            full_in.rename(full_out)
 
-    if not os.path.exists(writefile):
+    if not writefile.exists():
         msg = "Problem obtaining remote dataset : %s"
         raise RuntimeError(msg % dataset_name)
 
@@ -102,20 +93,20 @@ def is_known_remote(filename: str) -> bool:
 
 
 def remote_file(
-    filename: str, data_dir: str = _default_data_dir, raise_missing: bool = False
+    filename: str, data_dir: str | Path = _default_data_dir, raise_missing: bool = False
 ) -> str:
     config = RemoteDatasetList.get_config_for_file(filename)
     if not config and raise_missing:
         msg = f"Unknown {filename} cannot be found"
         raise RuntimeError(msg)
 
-    path = os.path.join(data_dir, filename)
-    if not os.path.isfile(path):
-        config["data_dir"] = data_dir
+    path = Path(data_dir) / filename
+    if not path.is_file():
+        config["data_dir"] = str(data_dir)
         fetch_remote_dataset(**config)  # type: ignore[arg-type]
 
-    if not os.path.isfile(path) and raise_missing:
+    if not path.is_file() and raise_missing:
         msg = f"{filename} cannot be found"
         raise RuntimeError(msg)
 
-    return path
+    return str(path)
