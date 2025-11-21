@@ -32,10 +32,10 @@ def test_data_path_cached():
 
 
 def test_delegate_to_remote(monkeypatch, tmpdir):
-    def dummy_remote_file(filename, data_dir=None, raise_missing=False):
-        if not data_dir:
-            data_dir = str(tmpdir)
-        return str(Path(data_dir) / filename)
+    def dummy_remote_file(filename, cache_dir=None, raise_missing=False):
+        if not cache_dir:
+            cache_dir = str(tmpdir)
+        return str(Path(cache_dir) / filename)
 
     monkeypatch.setattr(skhtd.remote_files, "remote_file", dummy_remote_file)
     monkeypatch.setattr(skhtd.remote_files, "is_known_remote", lambda _: True)
