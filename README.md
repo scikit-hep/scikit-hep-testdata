@@ -20,13 +20,13 @@ get larger files from common open-access data repositories.
 ## Installing and usage
 To install:
 
-```bash
+```
 python -m pip install scikit-hep-testdata
 ```
 
 Once installed, absolute file paths can be resolved using the helper methods:
 
-``` python
+```python
 from skhep_testdata import data_path
 
 filename = data_path("some_file.root")
@@ -60,7 +60,7 @@ files.
 ### Command-line invocation
 You can also interact with this package from the command-line:
 
-```bash
+```
 # Print a path (download if needed)
 skhep-testdata cms_hep_2012_tutorial/data.root
 
@@ -166,6 +166,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 This package uses `pytest` to run the unit tests. Install with `pip install scikit-hep-testdata[test]` or `pip install -e .[test]` (dev) to get the testing requirements.
 then run:
 
-```bash
+```
 pytest
 ```
