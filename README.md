@@ -20,13 +20,13 @@ get larger files from common open-access data repositories.
 ## Installing and usage
 To install:
 
-```bash
+```
 python -m pip install scikit-hep-testdata
 ```
 
 Once installed, absolute file paths can be resolved using the helper methods:
 
-``` python
+```python
 from skhep_testdata import data_path
 
 filename = data_path("some_file.root")
@@ -60,18 +60,38 @@ files.
 ### Command-line invocation
 You can also interact with this package from the command-line:
 
-```bash
+```
 # Print a path (download if needed)
-python -m skhep_testdata cms_hep_2012_tutorial/data.root
+skhep-testdata cms_hep_2012_tutorial/data.root
 
 # Show all "local" files
-python -m skhep_testdata --list
+skhep-testdata --list
 
 # Download all files to an existing directory
-python -m skhep_testdata --all --dir local
+skhep-testdata --all --dir local
 ```
 
-You can also use `pipx run scikit-hep-testdata` to access the above CLI without installing.
+Note: The `scikit-hep-testdata` and `skhep-testdata` command-line tools are the equivalent of `python -m skhep_testdata`.
+
+You can also use any of the following to access the above CLI without installing.
+
+* uv:
+
+```
+uvx scikit-hep-testdata
+```
+
+* pipx:
+
+```
+pipx run scikit-hep-testdata
+```
+
+* Pixi:
+
+```
+pixi exec scikit-hep-testdata
+```
 
 
 ## Adding new files
@@ -146,6 +166,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 This package uses `pytest` to run the unit tests. Install with `pip install scikit-hep-testdata[test]` or `pip install -e .[test]` (dev) to get the testing requirements.
 then run:
 
-```bash
+```
 pytest
 ```
