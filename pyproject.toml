@@ -44,7 +44,7 @@ dependencies = [
 [project.optional-dependencies]
 test = [
     "pytest-cov",
-    "pytest>=6.0.0",
+    "pytest>=9.0.0",
 ]
 
 [project.scripts]
@@ -105,9 +105,13 @@ lint.isort.required-imports = ["from __future__ import annotations"]
 "tests/**" = ["T20", "ARG001"]
 "__main__.py" = ["T20"]
 
-[tool.pytest.ini_options]
-addopts = "-v -ra"
-norecursedirs = ["src"]
+[tool.pytest]
+minversion = "9.0"
+addopts = ["-ra", "--showlocals"]
+strict = true
+filterwarnings = ["error"]
+log_level = "INFO"
+testpaths = ["tests"]
 
 [tool.mypy]
 files = "src"
