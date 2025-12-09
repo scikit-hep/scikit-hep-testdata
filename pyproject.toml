@@ -5,8 +5,60 @@ requires = [
 ]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "scikit-hep-testdata"
+dynamic = ["version"]
+description = "Example HEP files for testing and demonstrating"
+readme = "README.md"
+license = "BSD-3-Clause"
+requires-python = ">=3.10"
+authors = [
+    { name = "Ben Krikler", email = "b.krikler@cern.ch" },
+    { name = "Henry Schreiner", email = "hschrein@cern.ch" }
+]
+maintainers = [ {name = "The Scikit-HEP admins", email = "scikit-hep-admins@googlegroups.com"} ]
+keywords = [
+    "HEP",
+    "ROOT",
+    "testing",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
+]
+dependencies = [
+    "pyyaml",
+    "requests",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest-cov",
+    "pytest>=6.0.0",
+]
+
+[project.scripts]
+scikit-hep-testdata = "skhep_testdata.__main__:main"
+skhep-testdata = "skhep_testdata.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/scikit-hep/scikit-hep-testdata"
+
 [tool.setuptools_scm]
 write_to = "src/skhep_testdata/version.py"
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 
 [tool.ruff]
@@ -52,3 +104,37 @@ lint.isort.required-imports = ["from __future__ import annotations"]
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["T20", "ARG001"]
 "__main__.py" = ["T20"]
+
+[tool.pytest.ini_options]
+addopts = "-v -ra"
+norecursedirs = ["src"]
+
+[tool.mypy]
+files = "src"
+python_version = "3.13"
+warn_unused_configs = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+no_implicit_reexport = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = "skhep_testdata.version.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "importlib_resources.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "contextlib2.*"
+ignore_missing_imports = true
