@@ -57,6 +57,9 @@ Homepage = "https://github.com/scikit-hep/scikit-hep-testdata"
 [tool.setuptools_scm]
 write_to = "src/skhep_testdata/version.py"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 
 [tool.ruff]
 lint.select = [
