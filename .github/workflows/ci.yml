@@ -4,8 +4,9 @@ on:
   pull_request:
   push:
     branches: main
-    tags:
-    - 'v*'
+  release:
+    types:
+      - published
 
 jobs:
   checks:
@@ -73,7 +74,7 @@ jobs:
       with:
         user: __token__
         password: ${{ secrets.pypi_password }}
-      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+      if: github.event_name == 'release' && github.event.action == 'published'
 
   pass:
     if: always()
