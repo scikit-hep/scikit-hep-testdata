@@ -148,6 +148,7 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
       <td align="center" valign="top" width="14.28%"><a href="http://www.ariostas.com"><img src="https://avatars.githubusercontent.com/u/7596837?v=4?s=100" width="100px;" alt="Andres Rios Tascon"/><br /><sub><b>Andres Rios Tascon</b></sub></a><br /><a href="#data-ariostas" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ArturU043"><img src="https://avatars.githubusercontent.com/u/52539410?v=4?s=100" width="100px;" alt="Artur Cordeiro Oudot Choi"/><br /><sub><b>Artur Cordeiro Oudot Choi</b></sub></a><br /><a href="#data-ArturU043" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sathabbott"><img src="https://avatars.githubusercontent.com/u/52800387?v=4?s=100" width="100px;" alt="Samantha Abbott"/><br /><sub><b>Samantha Abbott</b></sub></a><br /><a href="#data-sathabbott" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/wdconinc"><img src="https://avatars.githubusercontent.com/u/4656391?v=4?s=100" width="100px;" alt="Wouter Deconinck"/><br /><sub><b>Wouter Deconinck</b></sub></a><br /><a href="#data-wdconinc" title="Data">🔣</a></td>
     </tr>
   </tbody>
 </table>
