@@ -70,11 +70,35 @@ jobs:
         name: DistPackage
         path: dist
 
+  publish:
+    environment:
+      name: pypi
+      url: https://pypi.org/p/scikit-hep-testdata/
+    needs: [dist]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    permissions:
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+      contents: read
+    steps:
+    - uses: actions/download-artifact@v7
+      with:
+        name: DistPackage
+        path: dist
+
+    - name: List distributions to be deployed
+      run: ls -lha dist/
+
+    - name: Generate artifact attestation for sdist and wheel
+      uses: actions/attest-build-provenance@v3
+      with:
+        subject-path: dist/scikit_hep_testdata-*
+
     - uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        user: __token__
-        password: ${{ secrets.pypi_password }}
-      if: github.event_name == 'release' && github.event.action == 'published'
+        print-hash: true
 
   pass:
     if: always()
