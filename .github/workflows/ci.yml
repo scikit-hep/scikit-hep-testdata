@@ -65,7 +65,7 @@ jobs:
     - name: Show sizes
       run: ls -lh dist
 
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       with:
         name: DistPackage
         path: dist
@@ -83,7 +83,7 @@ jobs:
       artifact-metadata: write
       contents: read
     steps:
-    - uses: actions/download-artifact@v7
+    - uses: actions/download-artifact@v8
       with:
         name: DistPackage
         path: dist
@@ -92,7 +92,7 @@ jobs:
       run: ls -lha dist/
 
     - name: Generate artifact attestation for sdist and wheel
-      uses: actions/attest-build-provenance@v3
+      uses: actions/attest-build-provenance@v4
       with:
         subject-path: dist/scikit_hep_testdata-*
 
