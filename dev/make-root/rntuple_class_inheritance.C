@@ -72,8 +72,8 @@ void fill_MultiGrandParent( MultiGrandParent& obj, int i ) {
   obj.multi_grand_parent2 = i * 50.0;
 }
 
-void rntuple_inherited_structs() {
-  std::string fname{ "test_class_inheritance_rntuple_v1-0-1-0.root" };
+void rntuple_class_inheritance() {
+  std::string fname{ "test_class_inheritance_rntuple_v1-0-0-1.root" };
 
   auto model = RNTupleModel::Create();
 
