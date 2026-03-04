@@ -1,9 +1,41 @@
 #include <ROOT/RNTupleModel.hxx>
 #include <ROOT/RNTupleWriter.hxx>
 
-#include "structs.h"
+#include <string>
+#include <vector>
 
-using namespace ROOT;
+using ROOT::RNTupleModel;
+using ROOT::RNTupleWriter;
+
+struct BaseA {
+  int              base_a1;
+  double           base_a2;
+  std::vector<int> base_a3;
+};
+
+struct BaseB {
+  double base_b;
+};
+
+struct Child : public BaseA {
+  int    child_1;
+  double child_2;
+};
+
+struct GrandChild : public Child {
+  int    grandchild_1;
+  double grandchild_2;
+};
+
+struct MultiParent : public BaseA, BaseB {
+  int    multi_parent_1;
+  double multi_parent_2;
+};
+
+struct MultiGrandParent : public Child, MultiParent {
+  int    multi_grand_parent1;
+  double multi_grand_parent2;
+};
 
 void fill_BaseA( BaseA& obj, int i ) {
   obj.base_a1 = i;
@@ -40,8 +72,8 @@ void fill_MultiGrandParent( MultiGrandParent& obj, int i ) {
   obj.multi_grand_parent2 = i * 50.0;
 }
 
-int main() {
-  std::string fname{ "uproot-pr-1589.root" };
+void rntuple_inherited_structs() {
+  std::string fname{ "test_class_inheritance_rntuple_v1-0-1-0.root" };
 
   auto model = RNTupleModel::Create();
 
@@ -63,6 +95,4 @@ int main() {
   }
 
   writer.reset();
-
-  return 0;
 }
