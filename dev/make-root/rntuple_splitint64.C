@@ -1,4 +1,4 @@
-/* https://github.com/scikit-hep/uproot5/issues/FIXME */
+/* https://github.com/scikit-hep/uproot5/issues/1592 */
 /* Tests SplitInt64 (std::int64_t) decoding including values >= 2^62 that
  * expose zigzag sign-flip bugs. Values: 0, 1, -1, 2^62, -2^62, INT64_MAX, INT64_MIN */
 #include <ROOT/RNTupleModel.hxx>

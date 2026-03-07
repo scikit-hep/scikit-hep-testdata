@@ -1,4 +1,4 @@
-/* https://github.com/scikit-hep/uproot5/issues/FIXME */
+/* https://github.com/scikit-hep/uproot5/issues/1592 */
 /* Tests SplitInt16 (std::int16_t) decoding including values >= 2^14 that
  * expose zigzag sign-flip bugs. Values: 0, 1, -1, 2^14, -2^14, INT16_MAX, INT16_MIN */
 #include <ROOT/RNTupleModel.hxx>

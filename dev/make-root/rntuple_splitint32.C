@@ -1,4 +1,4 @@
-/* https://github.com/scikit-hep/uproot5/issues/FIXME */
+/* https://github.com/scikit-hep/uproot5/issues/1592 */
 /* Tests SplitInt32 (std::int32_t) decoding including values >= 2^30 that
  * expose zigzag sign-flip bugs. Values: 0, 1, -1, 2^30, -2^30, INT32_MAX, INT32_MIN */
 #include <ROOT/RNTupleModel.hxx>
