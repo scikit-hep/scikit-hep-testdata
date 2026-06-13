@@ -43,7 +43,7 @@ def data_path(
             # Could locally cache if not fixable, or always cache locally
             # Could verify exists first
             # Download all not implemented
-            response = requests.get(baseurl + filename)
+            response = requests.get(baseurl + filename, timeout=30)
             response.raise_for_status()
             with cached_path.open("wb") as f:
                 f.write(response.content)
@@ -56,7 +56,7 @@ def download_all(cache_dir: str | None = None) -> None:
     local_dir = data.cache_path(cache_dir)
 
     with tempfile.TemporaryFile() as f:
-        with requests.get(zipurl, stream=True) as r:
+        with requests.get(zipurl, stream=True, timeout=30) as r:
             r.raise_for_status()
             for chunk in r.iter_content(chunk_size=8192):
                 f.write(chunk)
