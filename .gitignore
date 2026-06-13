@@ -117,3 +117,7 @@ ENV/
 dev/make-root/*.root
 dev/make-root/*.so
 dev/make-root/*.d
+
+# Symlink to AGENTS.md
+CLAUDE.md
+.claude/
