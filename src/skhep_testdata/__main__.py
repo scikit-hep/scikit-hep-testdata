@@ -39,7 +39,7 @@ def main():
         download_all(args.dir)
 
     for p in args.file_path:
-        path = data_path(p, args.dir)
+        path = data_path(p, cache_dir=args.dir)
         print(path)
 
 
