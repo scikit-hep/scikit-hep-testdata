@@ -76,7 +76,7 @@ def fetch_remote_dataset(
         logging.warning("Extracting %s", writefile)
         with tarfile.open(str(writefile)) as tar:
             members = [tar.getmember(f) for f in files.values()]
-            tar.extractall(str(dataset_dir), members)
+            tar.extractall(str(dataset_dir), members, filter="data")
 
         for outfile, infile in files.items():
             full_in = dataset_dir / infile
