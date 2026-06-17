@@ -82,7 +82,7 @@ def fetch_remote_dataset(
             # 3.10.12, not 3.10.0).
             if sys.version_info >= (3, 12) or hasattr(tarfile, "data_filter"):
                 tar.extractall(str(dataset_dir), members, filter="data")
-            else:
+            else:  # pragma: no cover
                 tar.extractall(str(dataset_dir), members)
 
         for outfile, infile in files.items():
