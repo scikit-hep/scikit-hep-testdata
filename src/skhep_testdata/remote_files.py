@@ -104,9 +104,6 @@ def remote_file(
 ) -> str:
     cache_dir = data.cache_path(cache_dir)
     config = RemoteDatasetList.get_config_for_file(filename)
-    if not config and raise_missing:
-        msg = f"Unknown {filename} cannot be found"
-        raise RuntimeError(msg)
 
     path = Path(cache_dir) / filename
     if not path.is_file():
