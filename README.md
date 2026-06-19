@@ -20,13 +20,13 @@ get larger files from common open-access data repositories.
 ## Installing and usage
 To install:
 
-```bash
+```
 python -m pip install scikit-hep-testdata
 ```
 
 Once installed, absolute file paths can be resolved using the helper methods:
 
-``` python
+```python
 from skhep_testdata import data_path
 
 filename = data_path("some_file.root")
@@ -60,18 +60,38 @@ files.
 ### Command-line invocation
 You can also interact with this package from the command-line:
 
-```bash
+```
 # Print a path (download if needed)
-python -m skhep_testdata cms_hep_2012_tutorial/data.root
+skhep-testdata cms_hep_2012_tutorial/data.root
 
 # Show all "local" files
-python -m skhep_testdata --list
+skhep-testdata --list
 
 # Download all files to an existing directory
-python -m skhep_testdata --all --dir local
+skhep-testdata --all --dir local
 ```
 
-You can also use `pipx run scikit-hep-testdata` to access the above CLI without installing.
+Note: The `scikit-hep-testdata` and `skhep-testdata` command-line tools are the equivalent of `python -m skhep_testdata`.
+
+You can also use any of the following to access the above CLI without installing.
+
+* uv:
+
+```
+uvx scikit-hep-testdata
+```
+
+* pipx:
+
+```
+pipx run scikit-hep-testdata
+```
+
+* Pixi:
+
+```
+pixi exec scikit-hep-testdata
+```
 
 
 ## Adding new files
@@ -128,6 +148,8 @@ We hereby acknowledge the contributors that made this project possible ([emoji k
       <td align="center" valign="top" width="14.28%"><a href="http://www.ariostas.com"><img src="https://avatars.githubusercontent.com/u/7596837?v=4?s=100" width="100px;" alt="Andres Rios Tascon"/><br /><sub><b>Andres Rios Tascon</b></sub></a><br /><a href="#data-ariostas" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ArturU043"><img src="https://avatars.githubusercontent.com/u/52539410?v=4?s=100" width="100px;" alt="Artur Cordeiro Oudot Choi"/><br /><sub><b>Artur Cordeiro Oudot Choi</b></sub></a><br /><a href="#data-ArturU043" title="Data">🔣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sathabbott"><img src="https://avatars.githubusercontent.com/u/52800387?v=4?s=100" width="100px;" alt="Samantha Abbott"/><br /><sub><b>Samantha Abbott</b></sub></a><br /><a href="#data-sathabbott" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/wdconinc"><img src="https://avatars.githubusercontent.com/u/4656391?v=4?s=100" width="100px;" alt="Wouter Deconinck"/><br /><sub><b>Wouter Deconinck</b></sub></a><br /><a href="#data-wdconinc" title="Data">🔣</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mrzimu"><img src="https://avatars.githubusercontent.com/u/74824770?v=4?s=100" width="100px;" alt="Mingrun Li"/><br /><sub><b>Mingrun Li</b></sub></a><br /><a href="#data-mrzimu" title="Data">🔣</a></td>
     </tr>
   </tbody>
 </table>
@@ -146,6 +168,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 This package uses `pytest` to run the unit tests. Install with `pip install scikit-hep-testdata[test]` or `pip install -e .[test]` (dev) to get the testing requirements.
 then run:
 
-```bash
+```
 pytest
 ```

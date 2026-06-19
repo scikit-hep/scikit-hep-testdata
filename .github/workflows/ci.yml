@@ -4,8 +4,9 @@ on:
   pull_request:
   push:
     branches: main
-    tags:
-    - 'v*'
+  release:
+    types:
+      - published
 
 jobs:
   checks:
@@ -14,14 +15,14 @@ jobs:
       fail-fast: false
       matrix:
         python-version:
-        - '3.9'
-        - '3.13'
+        - '3.10'
+        - '3.14'
     name: Check Python ${{ matrix.python-version }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -44,19 +45,19 @@ jobs:
       run: python -m pytest ./tests --cov=src/skhep_testdata --cov-report=xml
 
     - name: Test coverage with Codecov
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v7
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
   dist:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v6
       with:
-        python-version: '3.10'
+        python-version: '3.14'
 
     - name: Build wheel and SDist
       run: pipx run build
@@ -64,16 +65,40 @@ jobs:
     - name: Show sizes
       run: ls -lh dist
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v7
       with:
         name: DistPackage
         path: dist
 
+  publish:
+    environment:
+      name: pypi
+      url: https://pypi.org/p/scikit-hep-testdata/
+    needs: [dist]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    permissions:
+      id-token: write
+      attestations: write
+      artifact-metadata: write
+      contents: read
+    steps:
+    - uses: actions/download-artifact@v8
+      with:
+        name: DistPackage
+        path: dist
+
+    - name: List distributions to be deployed
+      run: ls -lha dist/
+
+    - name: Generate artifact attestation for sdist and wheel
+      uses: actions/attest-build-provenance@v4
+      with:
+        subject-path: dist/scikit_hep_testdata-*
+
     - uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        user: __token__
-        password: ${{ secrets.pypi_password }}
-      if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        print-hash: true
 
   pass:
     if: always()
