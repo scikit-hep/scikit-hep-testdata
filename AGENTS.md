@@ -1,6 +1,6 @@
 # AGENTS.md
 
-`scikit-hep-testdata` distributes example HEP files (mostly ROOT) for testing downstream packages like uproot. It is primarily a *data* package with a thin Python helper layer that resolves a filename to an absolute path, downloading and caching files on demand when they aren't present locally.
+`scikit-hep-testdata` distributes example HEP files (mostly ROOT and LHE) for testing downstream packages like `uproot` and `pylhe`. It is primarily a *data* package with a thin Python helper layer that resolves a filename to an absolute path, downloading and caching files on demand when they aren't present locally.
 
 ## Commands
 
@@ -40,10 +40,11 @@ This is why an end user installing from PyPI gets the helper code + `file_list.t
 
 ## Adding files
 
-- Drop the file into `src/skhep_testdata/data/`. It becomes a "local" file automatically (extension must be `.root/.lhe/.gz/.json` to be picked up by the build). No code change needed.
+- Drop the file into `src/skhep_testdata/data/`. It becomes a "local" file automatically (extension must be `.root/.lhe/.gz/.json/.hdf5` to be picked up by the build). No code change needed.
 - Large files (>~25 MB) should go to an external open-access repo and be wired in through `remote_datasets.yml` instead.
 - Scripts/notes used to *generate* ROOT test files live in `dev/make-root/` (ROOT C++ macros and a few Python scripts).
 - `check-added-large-files` pre-commit hook will flag oversized additions.
+- It is good practice to add a .readme file for files taken from elsewhere, using the same names(s) as the file(s) being added.
 
 ## Packaging notes
 
