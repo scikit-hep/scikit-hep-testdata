@@ -44,7 +44,7 @@ This is why an end user installing from PyPI gets the helper code + `file_list.t
 - Large files (>~25 MB) should go to an external open-access repo and be wired in through `remote_datasets.yml` instead.
 - Scripts/notes used to *generate* ROOT test files live in `dev/make-root/` (ROOT C++ macros and a few Python scripts).
 - `check-added-large-files` pre-commit hook will flag oversized additions.
-- It is good practice to add a .readme file for files taken from elsewhere, using the same names(s) as the file(s) being added.
+- It is good practice to add a .readme or .doi (for DOIs) file for files taken from elsewhere, using the same names(s) as the file(s) being added.
 
 ## Packaging notes
 
