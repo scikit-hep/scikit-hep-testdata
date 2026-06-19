@@ -39,10 +39,7 @@ def data_path(
         cached_path = data.cache_path(cache_dir) / filename
 
         if not cached_path.exists():
-            # Currently get from main branch
-            # Could locally cache if not fixable, or always cache locally
-            # Could verify exists first
-            # Download all not implemented
+            # Fetch from the main branch on GitHub
             response = requests.get(baseurl + filename)
             response.raise_for_status()
             with cached_path.open("wb") as f:
