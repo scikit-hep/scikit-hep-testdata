@@ -30,12 +30,25 @@ def test_make_dirs(tmpdir):
     skhtd.remote_files.make_all_dirs(tmppath)
 
 
-def test_remote_file(tmpdir, monkeypatch):
-    def fake_urlretrieve(url, writefile):
-        with open(writefile, "w") as outfile:
-            outfile.write("testing...")
+class FakeResponse:
+    def __enter__(self):
+        return self
 
-    monkeypatch.setattr(skhtd.remote_files, "urlretrieve", fake_urlretrieve)
+    def __exit__(self, *args):
+        return False
+
+    def raise_for_status(self):
+        pass
+
+    def iter_content(self, chunk_size):  # noqa: ARG002
+        yield b"testing..."
+
+
+def test_remote_file(tmpdir, monkeypatch):
+    def fake_get(url, stream=False, timeout=None):
+        return FakeResponse()
+
+    monkeypatch.setattr(skhtd.remote_files.requests, "get", fake_get)
 
     path = skhtd.remote_files.remote_file(good_file_1, cache_dir=str(tmpdir))
     assert path == str(tmpdir / "dataset_1" / "file_1.root")

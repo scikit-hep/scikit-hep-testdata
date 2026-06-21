@@ -5,8 +5,8 @@ import tarfile
 from importlib import resources
 from pathlib import Path
 from typing import ClassVar
-from urllib.request import urlretrieve
 
+import requests
 import yaml
 
 from . import data
@@ -70,7 +70,11 @@ def fetch_remote_dataset(
 
     make_all_dirs(str(dataset_dir))
     logging.warning("Downloading %s", url)
-    urlretrieve(url, str(writefile))
+    with requests.get(url, stream=True, timeout=30) as r:
+        r.raise_for_status()
+        with writefile.open("wb") as out:
+            for chunk in r.iter_content(chunk_size=8192):
+                out.write(chunk)
 
     if tarfile.is_tarfile(str(writefile)):
         logging.warning("Extracting %s", writefile)
