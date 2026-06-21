@@ -13,8 +13,7 @@ import argparse
 from . import data_path, download_all, known_files
 
 
-def main():
-    # type: () -> None
+def main() -> None:
     parser = argparse.ArgumentParser(
         prog="skhep_testdata",
         description="Expand a testing dataset path to a full path,"
@@ -39,7 +38,7 @@ def main():
         download_all(args.dir)
 
     for p in args.file_path:
-        path = data_path(p, args.dir)
+        path = data_path(p, cache_dir=args.dir)
         print(path)
 
 
