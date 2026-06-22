@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import sys
 import tarfile
 from importlib import resources
 from pathlib import Path
@@ -80,7 +81,13 @@ def fetch_remote_dataset(
         logging.warning("Extracting %s", writefile)
         with tarfile.open(str(writefile)) as tar:
             members = [tar.getmember(f) for f in files.values()]
-            tar.extractall(str(dataset_dir), members)
+            # The "data" filter is always present on 3.12+, but before that it
+            # only exists on patch releases that received the backport (e.g.
+            # 3.10.12, not 3.10.0).
+            if sys.version_info >= (3, 12) or hasattr(tarfile, "data_filter"):
+                tar.extractall(str(dataset_dir), members, filter="data")
+            else:  # pragma: no cover
+                tar.extractall(str(dataset_dir), members)
 
         for outfile, infile in files.items():
             full_in = dataset_dir / infile
