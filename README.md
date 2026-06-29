@@ -11,8 +11,9 @@
 
 [sk-badge]: https://scikit-hep.org/assets/images/Scikit--HEP-Project-blue.svg
 
-A common package to provide example files (*e.g*. ROOT) for testing and developing packages against.
-The sample of files is representative of typical files found "in the wild".
+A common package to provide example files (*e.g*, ROOT, LHE) for testing and developing packages against.
+The sample of files is representative of typical files found "in the wild",
+augmented by files added for specific repository issues and tests.
 
 In addition to including some root files directly, this package adds some simple helper methods to
 get larger files from common open-access data repositories.
