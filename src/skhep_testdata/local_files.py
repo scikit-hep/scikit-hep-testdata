@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import shutil
 import tempfile
 import zipfile
 from importlib import resources
@@ -63,5 +64,8 @@ def download_all(cache_dir: str | None = None) -> None:
 
         with zipfile.ZipFile(f) as z:
             for n in z.namelist():
-                if "src/skhep_testdata/data/" in n and not n.endswith(".py"):
-                    z.extract(n, str(local_dir / str(n.split("/")[-1])))
+                if n.endswith(("/", ".py")) or "src/skhep_testdata/data/" not in n:
+                    continue
+                target = local_dir / n.split("/")[-1]
+                with z.open(n) as src, target.open("wb") as dst:
+                    shutil.copyfileobj(src, dst)
