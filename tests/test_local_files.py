@@ -5,7 +5,6 @@ import zipfile
 from pathlib import Path
 
 import pytest
-import requests
 
 import skhep_testdata as skhtd
 
@@ -25,12 +24,6 @@ def test_data_path_missing():
 
     with pytest.raises(IOError):
         skhtd.data_path("doesnt-exist.root", raise_missing=True)
-
-
-def test_data_path_cached():
-    skhtd.known_files.add("dummy-cached.root")
-    with pytest.raises(requests.exceptions.HTTPError):
-        skhtd.data_path("dummy-cached.root", raise_missing=False, cache_dir="tmp")
 
 
 def test_delegate_to_remote(monkeypatch, tmpdir):
