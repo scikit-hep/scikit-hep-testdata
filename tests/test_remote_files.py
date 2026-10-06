@@ -2,6 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+import requests
+
 import skhep_testdata as skhtd
 
 _remote_dataset_cfg = str(Path(__file__).parent / "test_remote_datasets.yml")
@@ -9,6 +12,16 @@ skhtd.remote_files.RemoteDatasetList.load_remote_configs(_remote_dataset_cfg)
 
 good_file_1 = str(Path("dataset_1") / "file_1.root")
 bad_file_1 = str(Path("bad_dataset_1") / "file_1.root")
+
+
+def test_data_path_cached(monkeypatch, tmp_path):
+    monkeypatch.setattr(
+        skhtd.local_files, "known_files", skhtd.known_files | {"dummy-cached.root"}
+    )
+    with pytest.raises(requests.exceptions.HTTPError):
+        skhtd.data_path(
+            "dummy-cached.root", raise_missing=False, cache_dir=str(tmp_path)
+        )
 
 
 def test_is_known_remote():
