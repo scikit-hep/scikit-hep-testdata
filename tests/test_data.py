@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from pathlib import Path
-
 import pytest
 
 import skhep_testdata as skhtd
@@ -16,9 +14,10 @@ def test_cache_path_default(isolated_home):
 
 def test_cache_path_explicit(tmp_path):
     assert skhtd.data.cache_path(str(tmp_path)) == tmp_path
-    assert skhtd.data.cache_path(tmp_path / "x") == tmp_path / "x"
-    # An explicit cache_dir is used as-is
-    assert not Path(tmp_path / "x").exists()
+    # A cache_dir that doesn't exist yet is created, like the default one
+    expected = tmp_path / "x" / "y"
+    assert skhtd.data.cache_path(expected) == expected
+    assert expected.is_dir()
 
 
 def test_atomic_write(tmp_path):

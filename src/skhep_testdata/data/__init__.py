@@ -9,10 +9,11 @@ from typing import BinaryIO
 def cache_path(cache_dir: Path | str | None = None) -> Path:
     if cache_dir is None:
         skhepdir = Path.home() / ".local" / "skhepdata"
-        skhepdir.mkdir(exist_ok=True, parents=True)
-        return skhepdir
+    else:
+        skhepdir = Path(cache_dir)
 
-    return Path(cache_dir)
+    skhepdir.mkdir(exist_ok=True, parents=True)
+    return skhepdir
 
 
 @contextmanager

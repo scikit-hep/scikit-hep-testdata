@@ -89,6 +89,20 @@ def test_data_path_download(monkeypatch, isolated_home, dummy_known_file):
     assert calls == [(skhtd.local_files.baseurl + dummy_known_file, 30)]
 
 
+def test_data_path_new_cache_dir(monkeypatch, tmp_path, dummy_known_file):
+    monkeypatch.setattr(
+        skhtd.local_files.requests,
+        "get",
+        lambda *a, **k: FakeResponse(b"downloaded"),
+    )
+    cache_dir = tmp_path / "does" / "not" / "exist"
+
+    path = skhtd.data_path(dummy_known_file, cache_dir=str(cache_dir))
+
+    assert path == str(cache_dir / dummy_known_file)
+    assert (cache_dir / dummy_known_file).read_bytes() == b"downloaded"
+
+
 @pytest.mark.usefixtures("no_network")
 def test_data_path_cached(tmp_path, dummy_known_file):
     cached = tmp_path / dummy_known_file
@@ -179,8 +193,10 @@ def test_download_all(monkeypatch, tmp_path):
 
     monkeypatch.setattr(skhtd.local_files.requests, "get", fake_get)
 
-    skhtd.download_all(cache_dir=str(tmp_path))
+    # The cache dir is created if needed
+    cache_dir = tmp_path / "new-cache"
+    skhtd.download_all(cache_dir=str(cache_dir))
 
     assert calls == [(skhtd.local_files.zipurl, True, 30)]
-    assert sorted(p.name for p in tmp_path.iterdir()) == ["somefile.root"]
-    assert (tmp_path / "somefile.root").read_bytes() == file_bytes
+    assert sorted(p.name for p in cache_dir.iterdir()) == ["somefile.root"]
+    assert (cache_dir / "somefile.root").read_bytes() == file_bytes
