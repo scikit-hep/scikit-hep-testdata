@@ -66,16 +66,14 @@ def fetch_remote_dataset(
     dataset_dir = Path(cache_dir) / dataset_name
 
     writefile = dataset_dir / Path(url).name
-    if writefile.exists():
-        return
-
-    make_all_dirs(str(dataset_dir))
-    logging.warning("Downloading %s", url)
-    with requests.get(url, stream=True, timeout=30) as r:
-        r.raise_for_status()
-        with writefile.open("wb") as out:
-            for chunk in r.iter_content(chunk_size=8192):
-                out.write(chunk)
+    if not writefile.exists():
+        make_all_dirs(str(dataset_dir))
+        logging.warning("Downloading %s", url)
+        with requests.get(url, stream=True, timeout=30) as r:
+            r.raise_for_status()
+            with writefile.open("wb") as out:
+                for chunk in r.iter_content(chunk_size=8192):
+                    out.write(chunk)
 
     if tarfile.is_tarfile(str(writefile)):
         logging.warning("Extracting %s", writefile)
@@ -92,11 +90,7 @@ def fetch_remote_dataset(
         for outfile, infile in files.items():
             full_in = dataset_dir / infile
             full_out = dataset_dir / outfile
-            full_in.rename(full_out)
-
-    if not writefile.exists():
-        msg = "Problem obtaining remote dataset : %s"
-        raise RuntimeError(msg % dataset_name)
+            full_in.replace(full_out)
 
 
 def is_known_remote(filename: str) -> bool:
