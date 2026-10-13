@@ -27,10 +27,27 @@ def test_data_path_missing():
         skhtd.data_path("doesnt-exist.root", raise_missing=True)
 
 
-def test_data_path_cached():
-    skhtd.known_files.add("dummy-cached.root")
-    with pytest.raises(requests.exceptions.HTTPError):
-        skhtd.data_path("dummy-cached.root", raise_missing=False, cache_dir="tmp")
+def test_data_path_cached(monkeypatch, tmp_path):
+    filename = "dummy-cached.root"
+    monkeypatch.setattr(
+        skhtd.local_files, "known_files", skhtd.known_files | {filename}
+    )
+    response = requests.Response()
+    response.status_code = 404
+    response.reason = "Not Found"
+    response.url = skhtd.local_files.baseurl + filename
+
+    def fake_get(url, timeout):
+        assert url == response.url
+        assert timeout == 30
+        return response
+
+    monkeypatch.setattr(skhtd.local_files.requests, "get", fake_get)
+    with pytest.raises(requests.exceptions.HTTPError, match="404") as exc_info:
+        skhtd.data_path(filename, raise_missing=False, cache_dir=str(tmp_path))
+
+    assert exc_info.value.response is response
+    assert not (tmp_path / filename).exists()
 
 
 def test_delegate_to_remote(monkeypatch, tmpdir):
