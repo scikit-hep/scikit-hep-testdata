@@ -71,7 +71,7 @@ def fetch_remote_dataset(
         logging.warning("Downloading %s", url)
         with requests.get(url, stream=True, timeout=30) as r:
             r.raise_for_status()
-            with writefile.open("wb") as out:
+            with data.atomic_write(writefile) as out:
                 for chunk in r.iter_content(chunk_size=8192):
                     out.write(chunk)
 

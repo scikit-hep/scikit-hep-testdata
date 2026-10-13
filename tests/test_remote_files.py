@@ -5,6 +5,7 @@ import tarfile
 from pathlib import Path
 
 import pytest
+import requests
 
 import skhep_testdata as skhtd
 
@@ -154,6 +155,31 @@ def test_remote_file_default_cache_dir(isolated_home, fake_get):
     expected = isolated_home / ".local" / "skhepdata" / "dataset_3" / "file_3.root"
     assert path == str(expected)
     assert expected.read_bytes() == b"root file contents"
+
+
+@pytest.mark.usefixtures("test_remote_configs")
+def test_remote_file_interrupted_download(tmp_path, monkeypatch, fake_get):
+    class InterruptedResponse(FakeResponse):
+        def iter_content(self, chunk_size):  # noqa: ARG002
+            yield self.content[:10]
+            raise requests.ConnectionError
+
+    def interrupted_get(url, stream=False, timeout=None):
+        return InterruptedResponse(make_tar({"file_1.root": b"one"}))
+
+    monkeypatch.setattr(skhtd.remote_files.requests, "get", interrupted_get)
+    with pytest.raises(requests.ConnectionError):
+        skhtd.remote_files.remote_file(good_file_1, cache_dir=str(tmp_path))
+
+    # No partial archive is left behind to be mistaken for a complete one
+    assert list((tmp_path / "dataset_1").iterdir()) == []
+
+    # So the next attempt downloads it again
+    monkeypatch.setattr(skhtd.remote_files.requests, "get", fake_get)
+    fake_get.content = make_tar({"file_1.root": b"one"})
+    path = skhtd.remote_files.remote_file(good_file_1, cache_dir=str(tmp_path))
+    assert Path(path).read_bytes() == b"one"
+    assert len(fake_get.calls) == 1
 
 
 @pytest.mark.usefixtures("test_remote_configs", "no_network")

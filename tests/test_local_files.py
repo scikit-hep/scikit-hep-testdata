@@ -113,6 +113,24 @@ def test_data_path_download_error(monkeypatch, tmp_path, dummy_known_file):
     assert not (tmp_path / dummy_known_file).exists()
 
 
+def test_data_path_interrupted_download(monkeypatch, tmp_path, dummy_known_file):
+    class InterruptedResponse:
+        def raise_for_status(self):
+            pass
+
+        @property
+        def content(self):
+            raise requests.ConnectionError
+
+    monkeypatch.setattr(
+        skhtd.local_files.requests, "get", lambda *a, **k: InterruptedResponse()
+    )
+    with pytest.raises(requests.ConnectionError):
+        skhtd.data_path(dummy_known_file, cache_dir=str(tmp_path))
+
+    assert list(tmp_path.iterdir()) == []
+
+
 @pytest.mark.usefixtures("no_network")
 def test_data_path_remote(tmp_path):
     # Scoped names from remote_datasets.yml go through remote_files
