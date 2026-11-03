@@ -43,7 +43,7 @@ def data_path(
             # Fetch from the main branch on GitHub
             response = requests.get(baseurl + filename, timeout=30)
             response.raise_for_status()
-            with cached_path.open("wb") as f:
+            with data.atomic_write(cached_path) as f:
                 f.write(response.content)
         return str(cached_path)
 
@@ -64,5 +64,5 @@ def download_all(cache_dir: str | None = None) -> None:
                 if n.endswith(("/", ".py")) or "src/skhep_testdata/data/" not in n:
                     continue
                 target = local_dir / n.split("/")[-1]
-                with z.open(n) as src, target.open("wb") as dst:
+                with z.open(n) as src, data.atomic_write(target) as dst:
                     shutil.copyfileobj(src, dst)
