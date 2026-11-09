@@ -3,6 +3,10 @@ dataset_1:
   files:
     - file_1.root
 dataset_2:
-  url: http://not-a-real-url.com/dataset_1.tar
+  url: http://not-a-real-url.com/dataset_2.tar
   files:
-    file_1.root:  file_1.root
+    file_2.root: subdir/inner_2.root
+dataset_3:
+  url: http://not-a-real-url.com/file_3.root
+  files:
+    - file_3.root
